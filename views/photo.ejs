@@ -1,0 +1,51 @@
+<link href="/<%= urlRoot %>/gallery.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato" />
+
+<nav class="breadcrumb">
+<% for (var i=0; i<breadcrumb.length; i++) { %>
+
+  <% if (i==breadcrumb.length-1){ %>
+    <%= breadcrumb[i].name %>
+  <% }else{ %>
+    <a href="/<%= breadcrumb[i].url %>"> <%= breadcrumb[i].name %> &raquo; </a>
+  <% } %>
+
+<% } %>
+</nav>
+
+<h1 class="photo-title"><%= name %></h1>
+
+<figure class="photo">
+  <a href="/<%= src %>">
+    <img src="/<%= src %>?tn=0" alt="<%= name%>">
+  </a>
+  <figcaption>
+    <% if (exif && exif.Description){ %>
+    <%= exif.Description%>
+    <% }else{ %>
+    <%= name%>
+    <% } %>
+  </figcaption>
+</figure>
+
+
+
+<% if (exif){ %>
+<section class="info">
+  <h2>Info</h2>
+  <table>
+    <% for (var key in exif){ %>
+    <% if (key!="Description"){ %>
+    <tr>
+      <td>
+        <%= key %>
+      </td>
+      <td>
+        <%= exif[key] %>
+      </td>
+    </tr>
+    <% } %>
+    <% } %>
+  </table>
+</section>
+<% } %>

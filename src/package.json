@@ -1,0 +1,20 @@
+{
+  "author": "Cian Clarke <cian@cianclarke.com> (http://www.cianclarke.com)",
+  "name": "node-gallery-example",
+  "description": "Node gallery example",
+  "version": "1.0.0",
+  "homepage": "http://www.github.com/cianclarke/node-gallery",
+  "repository": {
+    "url": ""
+  },
+  "engines": {
+    "node": ">=0.6.2"
+  },
+  "dependencies": {
+    "ejs": "2.0.8",
+    "express": "4.10.7"
+  },
+  "scripts": {
+    "start": "node app.js"
+  }
+}

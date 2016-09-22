@@ -1,0 +1,143 @@
+<link href="/<%= urlRoot %>/gallery.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/assets/photoSwipe/photoswipe.css">
+<link rel="stylesheet" type="text/css" href="/assets/photoSwipe/default-skin/default-skin.css">
+<script src="/assets/photoSwipe/photoswipe-ui-default.min.js"></script>
+<script src="/assets/photoSwipe/photoswipe.min.js"></script>
+
+<% if (!isRoot){ %>
+  <nav class="breadcrumb">
+
+  <% for (var i=0; i<breadcrumb.length; i++) { %>
+  <% if (i==breadcrumb.length-1){ %>
+  <%= breadcrumb[i].name %>
+  <% }else{ %>
+  <a href="/<%= breadcrumb[i].url %>"> <%= breadcrumb[i].name %> &raquo; </a>
+  <% } %>
+  <% } %>
+
+  </nav>
+<% } %>
+
+<h1 class="album-title"><%= name %></h1>
+
+<% if (albums.length>0){ %>
+  <h2><%= albums.length %> Albums</h2>
+  <ul class="albums">
+    <% albums.forEach(function(album){ %>
+      <li class="thumb">
+        <a href="/<%= album.url %>">
+          <figure>
+            <img src="/<%= album.url %>?tn=1" alt="<%= album.name %>"/>
+          </figure>
+          <figcaption><%= album.name %></figcaption>
+        </a>
+      </li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<% if (photos.length<0){ %>
+  <h2><%= photos.length %> Photos</h2>
+  <ul class="photos">
+    <% photos.forEach(function(photo){ %>
+      <li class="thumb">
+        <a href="/<%= photo.url %>">
+          <figure>
+            <img src="/<%= photo.src %>?tn=1" alt="<%= photo.name %>"/>
+          </figure>
+          <figcaption><%= photo.name %></figcaption>
+        </a>
+      </li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<% if (photos.length > 0){ %>
+<div class="photos" itemscope itemtype="http://schema.org/ImageGallery">
+  <% photos.forEach(function(photo){ %>
+      <figure class="thumb" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+          <a href="/<%= photo.src %>" itemprop="contentUrl" data-size="<%= photo.size %>">
+              <img src="/<%= photo.src %>?tn=1" itemprop="thumbnail" alt="<%= photo.name %>" />
+          </a>
+          <figcaption itemprop="caption description"><%= photo.name %></figcaption>
+          <div style="display:none">
+            <p class="exif-p"><b>相机：</b><span><%= photo.exif.Model %></span></p>
+            <p class="exif-p"><b>时间：</b><span><%= photo.exif.Time %></span></p>
+            <p class="exif-p"><b>光圈：</b><span><%= photo.exif.aperture %></span></p>
+            <p class="exif-p"><b>焦距：</b><span><%= photo.exif.focalLength %></span></p>
+            <p class="exif-p"><b>ISO：</b><span><%= photo.exif.ISO %></span></p>
+            <p class="exif-p"><b>快门：</b><span><%= photo.exif.ExposureTime %></span></p>
+          </div>
+      </figure>
+  <% }) %>
+</div>
+<% } %>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="/assets/main.js"></script>

@@ -1,0 +1,22 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: Century Gothic, sans-serif;
+    color: #333;
+    font-weight: 300;
+    clear: both;
+}
+h2 {
+    color: #555;
+}
+
+a {
+    color: #666;
+    text-decoration: none;
+}
+
+section.info {
+    background-color: #f8f8f8;
+}

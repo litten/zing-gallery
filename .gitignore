@@ -1,0 +1,14 @@
+.project
+.idea
+
+.settings
+.DS_Store
+*/.DS_Store
+.sass-cache
+.tmp_*
+/docs
+/docs/*
+/src/resources/photos/*
+/src/tmp/*
+node_modules
+npm-debug.log
