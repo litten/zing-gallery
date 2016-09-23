@@ -1,7 +1,7 @@
 var fs = require('fs'),
 	nodePath = require('path'),
-	imk = require('imagemagick')
-	images = require('images')
+	images = require('images'),
+	crypto = require('crypto');
 
 function walk(path, floor, handleFile) {
 	handleFile(path, floor);
@@ -38,11 +38,17 @@ function handleFile(path, floor) {
 			if (stats.isDirectory()) {
 
 			} else if (extName === '.jpg' || extName === '.png') {
-				images(path)                     //Load image from file 
-				    .size(200)                          //Geometric scaling the image to 400 pixels width
-				    .save('./tmp/s_' + nodePath.basename(path), {               //Save the image to a file,whih quality 50
-				        quality : 70                    //保存图片到文件,图片质量为50
-				    });
+				var md5Name = crypto.createHash('md5').update(nodePath.join(path)).digest('hex')
+				var imgPath = './tmp/' + md5Name + '.jpg';
+				fs.exists(imgPath, function(exists) {
+				  if (!exists) {
+				    images(path)
+				    	.size(200)
+				    	.save(imgPath, {
+				    		quality: 80
+				    	});
+				  }
+				});
 			}
 		}
 	})
