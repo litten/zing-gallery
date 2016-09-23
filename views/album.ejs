@@ -1,8 +1,8 @@
-<link href="/<%= urlRoot %>/gallery.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="/assets/photoSwipe/photoswipe.css">
-<link rel="stylesheet" type="text/css" href="/assets/photoSwipe/default-skin/default-skin.css">
-<script src="/assets/photoSwipe/photoswipe-ui-default.min.js"></script>
-<script src="/assets/photoSwipe/photoswipe.min.js"></script>
+<link href="./gallery.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="./photoSwipe/photoswipe.css">
+<link rel="stylesheet" type="text/css" href="./photoSwipe/default-skin/default-skin.css">
+<script src="./photoSwipe/photoswipe-ui-default.min.js"></script>
+<script src="./photoSwipe/photoswipe.min.js"></script>
 
 <% if (!isRoot){ %>
   <nav class="breadcrumb">
@@ -63,10 +63,10 @@
           <div style="display:none">
             <p class="exif-p"><b>相机：</b><span><%= photo.exif.Model %></span></p>
             <p class="exif-p"><b>时间：</b><span><%= photo.exif.Time %></span></p>
-            <p class="exif-p"><b>光圈：</b><span><%= photo.exif.aperture %></span></p>
+            <p class="exif-p"><b>光圈：</b><span><%= photo.exif.FNumber %></span></p>
             <p class="exif-p"><b>焦距：</b><span><%= photo.exif.focalLength %></span></p>
             <p class="exif-p"><b>ISO：</b><span><%= photo.exif.ISO %></span></p>
-            <p class="exif-p"><b>快门：</b><span><%= photo.exif.ExposureTime %></span></p>
+            <p class="exif-p"><b>快门：</b><span><%= photo.exif.speed %></span></p>
           </div>
       </figure>
   <% }) %>
@@ -140,4 +140,4 @@
 
 </div>
 
-<script src="/assets/main.js"></script>
+<script src="./main.js"></script>

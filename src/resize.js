@@ -38,24 +38,10 @@ function handleFile(path, floor) {
 			if (stats.isDirectory()) {
 
 			} else if (extName === '.jpg' || extName === '.png') {
-			// } else if (nodePath.basename(path) === 'IMG_0177.jpg') {
-				/*imk.resize({
-					srcPath: path,
-					dstPath: './tmp/s_' + nodePath.basename(path),
-					width: 256
-				}, function(err, stdout, stderr) {
-					console.log(err)
-					if (err) throw err;
-					console.log('resized kittens.jpg to fit within 256x256px');
-				});*/
 				images(path)                     //Load image from file 
-				                                        //加载图像文件
 				    .size(200)                          //Geometric scaling the image to 400 pixels width
-				                                        //等比缩放图像到400像素宽
-				    // .draw(images("logo.png"), 10, 10)   //Drawn logo at coordinates (10,10)
-				                                        //在(10,10)处绘制Logo
 				    .save('./tmp/s_' + nodePath.basename(path), {               //Save the image to a file,whih quality 50
-				        quality : 100                    //保存图片到文件,图片质量为50
+				        quality : 70                    //保存图片到文件,图片质量为50
 				    });
 			}
 		}

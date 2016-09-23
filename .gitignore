@@ -8,7 +8,7 @@
 .tmp_*
 /docs
 /docs/*
-/src/resources/photos/*
-/src/tmp/*
+/resources/photos/*
+/tmp/*
 node_modules
 npm-debug.log
