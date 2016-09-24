@@ -3,7 +3,12 @@
 <script src="./photoSwipe/photoswipe-ui-default.min.js"></script>
 <script src="./photoSwipe/photoswipe.min.js"></script>
 <script src="./main.js"></script>
-
+<script src="./lazyload.min.js"></script>
+<script type="text/javascript">
+  var lazy = lazyload({
+    container: document.getElementsByTagName('body')[0]
+  });
+</script>
 <% if (!isRoot){ %>
   <nav class="breadcrumb">
 
@@ -27,25 +32,11 @@
       <li class="thumb">
         <a href="/<%= album.url %>">
           <figure>
-            <img src="/<%= album.url %>?tn=1" alt="<%= album.name %>"/>
+            <img alt="<%= album.name %>" data-src="/<%= album.url %>?tn=1"
+          src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+          onload="lazy(this)"/>
           </figure>
           <figcaption><%= album.name %></figcaption>
-        </a>
-      </li>
-    <% }) %>
-  </ul>
-<% } %>
-
-<% if (photos.length<0){ %>
-  <h2><%= photos.length %> Photos</h2>
-  <ul class="photos">
-    <% photos.forEach(function(photo){ %>
-      <li class="thumb">
-        <a href="/<%= photo.url %>">
-          <figure>
-            <img src="/<%= photo.src %>?tn=1" alt="<%= photo.name %>"/>
-          </figure>
-          <figcaption><%= photo.name %></figcaption>
         </a>
       </li>
     <% }) %>
@@ -57,7 +48,9 @@
   <% photos.forEach(function(photo){ %>
       <figure class="thumb" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
           <a href="/<%= photo.src %>" itemprop="contentUrl" data-size="<%= photo.size %>">
-              <img src="/<%= photo.src %>?tn=1" itemprop="thumbnail" alt="<%= photo.name %>" />
+            <img alt="<%= photo.name %>" data-src="/<%= photo.src %>?tn=1"
+              src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              onload="lazy(this)" itemprop="thumbnail"/>
           </a>
           <figcaption itemprop="caption description"><%= photo.name %></figcaption>
           <div style="display:none">

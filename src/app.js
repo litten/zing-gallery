@@ -1,16 +1,15 @@
-require('./resize')
-
-// Usage example with ExpressJS
-var express = require('express'),
+var resize = require('../lib/resize'),
+express = require('express'),
 port = process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 3000,
 host = process.env.OPENSHIFT_NODEJS_IP;
+
+resize.init('./resources/photos')
 
 var app = express();
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/assets'))
 
-// In your project, this would be require('node-gallery')
 app.use('/', require('../lib/gallery.js')({
   staticFiles : 'resources/photos',
   urlRoot : '/',
