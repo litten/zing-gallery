@@ -80,11 +80,15 @@ section.info {
   background: #fff;
   position: relative;
   cursor: pointer;
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .hide{
   width: 150px;
-  margin: 10px;
-  padding: 0px 8px;
+  margin: 0 10px;
+  padding: 0 8px;
   visibility: hidden;
 }
 
@@ -115,6 +119,7 @@ section.info {
 }
 
 .thumb figcaption {
+  width: 100%;
   line-height: 32px;
   max-height: 32px;
   overflow: hidden;

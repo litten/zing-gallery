@@ -31,12 +31,12 @@
     <% albums.forEach(function(album){ %>
       <li class="thumb">
         <a href="/<%= album.url %>">
-          <figure>
+          <figure class="thumb">
             <img alt="<%= album.name %>" data-src="/<%= album.url %>?tn=1"
           src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
           onload="lazy(this)"/>
+            <figcaption><%= album.name %></figcaption>
           </figure>
-          <figcaption><%= album.name %></figcaption>
         </a>
       </li>
     <% }) %>
@@ -48,9 +48,7 @@
   <% photos.forEach(function(photo){ %>
       <figure class="thumb" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
           <a href="/<%= photo.src %>" itemprop="contentUrl" data-size="<%= photo.size %>">
-            <img alt="<%= photo.name %>" data-src="/<%= photo.src %>?tn=1"
-              src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-              onload="lazy(this)" itemprop="thumbnail"/>
+            <img alt="<%= photo.name %>" data-src="/<%= photo.src %>?tn=1" src="/img/preloader.gif" onload="lazy(this)" itemprop="thumbnail"/>
           </a>
           <figcaption itemprop="caption description"><%= photo.name %></figcaption>
           <div style="display:none">
