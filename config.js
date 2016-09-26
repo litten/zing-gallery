@@ -1,3 +1,3 @@
 module.exports = {
-	title: 'Whisht Gallery'
+	title: 'Zing Gallery'
 }

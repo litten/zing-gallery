@@ -27,20 +27,24 @@
 
 <% if (albums.length>0){ %>
   <h2><%= albums.length %> Albums</h2>
-  <ul class="albums">
+
+  <div class="albums">
     <% albums.forEach(function(album){ %>
-      <li class="thumb">
-        <a href="/<%= album.url %>">
-          <figure class="thumb">
-            <img alt="<%= album.name %>" data-src="/<%= album.url %>?tn=1"
-          src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-          onload="lazy(this)"/>
-            <figcaption><%= album.name %></figcaption>
-          </figure>
-        </a>
-      </li>
+      <figure class="thumb" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+          <% if(album.password) {%>
+          <a data-href="/<%= album.url %>">
+            <div class="bg-lock">
+              <i class="icon-lock"></i>
+            </div>
+          <% } else { %>
+          <a href="/<%= album.url %>">
+          <% } %>
+            <img alt="<%= album.name %>" data-src="/<%= album.url %>?tn=1" src="/img/preloader.gif" onload="lazy(this)" itemprop="thumbnail"/>
+          </a>
+          <figcaption itemprop="caption description"><%= album.name %></figcaption>
+      </figure>
     <% }) %>
-  </ul>
+  </div>
 <% } %>
 
 <% if (photos.length > 0){ %>
