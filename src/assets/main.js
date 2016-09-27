@@ -216,6 +216,12 @@ var initSecretAlbum = function(albumSlt) {
             $overlay.style.display = 'initial';
             $input.value = '';
         })
+        em.addEventListener('touchstart', function(e) {
+            baseUrl = this.getAttribute('data-href');
+            $dialog.style.display = 'flex';
+            $overlay.style.display = 'initial';
+            $input.value = '';
+        })
     })
 
     $overlay.addEventListener('click', function(e) {
