@@ -32,7 +32,7 @@
     <% albums.forEach(function(album){ %>
       <figure class="thumb" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
           <% if(album.password) {%>
-          <a data-href="/<%= album.url %>">
+          <a class="js-secret-album" data-href="/<%= album.url %>">
             <div class="bg-lock">
               <i class="icon-lock"></i>
             </div>
@@ -44,6 +44,11 @@
           <figcaption itemprop="caption description"><%= album.name %></figcaption>
       </figure>
     <% }) %>
+  </div>
+  <div tabindex="-1" class="overlay js-overlay"></div>
+  <div class="dialog js-dialog">
+    <input class="input-lock" type="text" placeholder="password needed" />
+    <a href="javascript:void(0);" title="确定" class="js-modal-yes btn-default"><i class="icon-unlocked"></i>确定</a>
   </div>
 <% } %>
 

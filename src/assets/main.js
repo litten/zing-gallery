@@ -201,9 +201,38 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
     }
 };
 
+var initSecretAlbum = function(albumSlt) {
+    var albumElements = document.querySelectorAll(albumSlt);
+    var $dialog = document.querySelectorAll('.js-dialog')[0];
+    var $overlay = document.querySelectorAll('.js-overlay')[0];
+    var $btn = document.querySelectorAll('.js-modal-yes')[0];
+    var $input = document.querySelectorAll('.input-lock')[0];
+    var baseUrl = '';
+
+    albumElements.forEach(function(em) {
+        em.addEventListener('click', function(e) {
+            baseUrl = this.getAttribute('data-href');
+            $dialog.style.display = 'flex';
+            $overlay.style.display = 'initial';
+            $input.value = '';
+        })
+    })
+
+    $overlay.addEventListener('click', function(e) {
+        $dialog.style.display = 'none';
+        $overlay.style.display = 'none';
+    })
+
+    $btn.addEventListener('click', function(e) {
+        $dialog.style.display = 'none';
+        $overlay.style.display = 'none';
+        window.location.href = (baseUrl + '?password=' + $input.value);
+    })
+}
 var Main = (function() {
 	function init() {
 		initPhotoSwipeFromDOM('.photos');
+        initSecretAlbum('.js-secret-album');
 	}
 	return {
 		init: init
