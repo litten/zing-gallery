@@ -12,6 +12,10 @@ body {
 .breadcrumb {
   padding-left: 10px;
   margin-bottom: 30px;
+  color: #159bfd;
+}
+.breadcrumb a {
+  color: #159bfd;
 }
 
 h1, h2, h3 {
@@ -221,6 +225,7 @@ section.info table td:first-child {
   padding: 6px;
   outline: none;
   border: 1px solid #a9a9a9;
+  border-radius: 0;
   color: #333;
   margin-right: -1px;
 }
@@ -229,11 +234,15 @@ section.info table td:first-child {
   vertical-align: middle;
   cursor: pointer;
   font-size: 14px;
+  text-decoration: none;
   text-align: center;
   border: 0;
   background-color: #188eee;
   color: #fff;
   padding: 5px 20px;
+}
+.btn-default:active {
+  color: #fff;
 }
 .overlay {
   position: fixed;
