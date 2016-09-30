@@ -11,15 +11,13 @@
 </script>
 <% if (!isRoot){ %>
   <nav class="breadcrumb">
-
   <% for (var i=0; i<breadcrumb.length; i++) { %>
   <% if (i==breadcrumb.length-1){ %>
   <%= breadcrumb[i].name %>
   <% }else{ %>
-  <a href="/<%= breadcrumb[i].url %>"> <%= breadcrumb[i].name %> &raquo; </a>
+  <a href="./<%= breadcrumb[i].url %>"> <%= breadcrumb[i].name %> &raquo; </a>
   <% } %>
   <% } %>
-
   </nav>
 <% } %>
 
@@ -32,14 +30,14 @@
     <% albums.forEach(function(album){ %>
       <figure class="thumb" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
           <% if(album.password) {%>
-          <a class="js-secret-album" data-href="/<%= album.url %>">
+          <a class="js-secret-album" data-href="./<%= album.url %>">
             <div class="bg-lock">
               <i class="icon-lock"></i>
             </div>
           <% } else { %>
-          <a href="/<%= album.url %>">
+          <a href="./<%= album.url %>">
           <% } %>
-            <img alt="<%= album.name %>" data-src="/<%= album.url %>?tn=1" src="/img/preloader.gif" onload="lazy(this)" itemprop="thumbnail"/>
+            <img alt="<%= album.name %>" data-src="./<%= album.url %>?tn=1" src="./img/preloader.gif" onload="lazy(this)" itemprop="thumbnail"/>
           </a>
           <figcaption itemprop="caption description"><%= album.name %></figcaption>
       </figure>
@@ -56,17 +54,19 @@
 <div class="photos" itemscope itemtype="http://schema.org/ImageGallery">
   <% photos.forEach(function(photo){ %>
       <figure class="thumb" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-          <a href="/<%= photo.src %>" itemprop="contentUrl" data-size="<%= photo.size %>">
-            <img alt="<%= photo.name %>" data-src="/<%= photo.src %>?tn=1" src="/img/preloader.gif" onload="lazy(this)" itemprop="thumbnail"/>
+          <a href="./<%= photo.src %>" itemprop="contentUrl" data-size="<%= photo.size %>">
+            <img alt="<%= photo.name %>" data-src="./<%= photo.src %>?tn=1" src="./img/preloader.gif" onload="lazy(this)" itemprop="thumbnail"/>
           </a>
           <figcaption itemprop="caption description"><%= photo.name %></figcaption>
           <div style="display:none">
+            <% if (photo.exif) {%>
             <p class="exif-p"><b>相机：</b><span><%= photo.exif.Model %></span></p>
             <p class="exif-p"><b>时间：</b><span><%= photo.exif.Time %></span></p>
             <p class="exif-p"><b>光圈：</b><span><%= photo.exif.FNumber %></span></p>
             <p class="exif-p"><b>焦距：</b><span><%= photo.exif.focalLength %></span></p>
             <p class="exif-p"><b>ISO：</b><span><%= photo.exif.ISO %></span></p>
             <p class="exif-p"><b>快门：</b><span><%= photo.exif.speed %></span></p>
+            <% } %>
           </div>
       </figure>
   <% }) %>

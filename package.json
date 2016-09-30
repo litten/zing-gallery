@@ -1,6 +1,6 @@
 {
   "author": "Litten <litten225@qq.com>",
-  "name": "whisht-gallery",
+  "name": "zing-gallery",
   "description": "NodeJS Photo Gallery using directory structure & exif info to output a gallery",
   "version": "1.0.0",
   "license": "MIT",
@@ -26,9 +26,5 @@
   "scripts": {
     "start": "node src/app.js",
     "test": "node test/test-gallery.js ; node test/test-album.js ; node test/test-photo.js"
-  },
-  "devDependencies": {
-    "colors": "1.0.3"
-  },
-  "subdomain": "node-gallery"
+  }
 }
