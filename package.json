@@ -25,6 +25,7 @@
   },
   "scripts": {
     "start": "node src/app.js",
+    "clean": "node src/clean.js",
     "test": "node test/test-gallery.js ; node test/test-album.js ; node test/test-photo.js"
   }
 }

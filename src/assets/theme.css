@@ -148,8 +148,8 @@ section.info {
   margin: auto;
   height: auto;
   width: auto;
-  max-width: 150px;
-  max-height: 100px;
+  width: 150px;
+  height: 100px;
 }
 
 figure.photo {
