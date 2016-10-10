@@ -24,6 +24,10 @@ h1, h2, h3 {
   clear: both;
 }
 
+.album-title {
+  margin-bottom: 20px;
+}
+
 h2 {
 }
 
@@ -37,7 +41,7 @@ section.info {
 }
 
 .exif-p {
-  width: 49%;
+  width: 50%;
   float: left;
 }
 
@@ -65,13 +69,11 @@ section.info {
   opacity: 1;
 }
 
-.photos {
+.albums, .photos {
+  margin-top: 20px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-}
-.albums {
-  margin-top: 60px; 
 }
 .thumb {
   text-align: center;
@@ -88,6 +90,13 @@ section.info {
   align-items: flex-end;
   flex-wrap: wrap;
   justify-content: center;
+}
+.thumb:hover {
+  transform: scale(1.1);
+  transition: .3s;
+}
+.thumb:hover.thumb:before, .thumb:hover.thumb:after {
+  display: none;
 }
 .bg-lock {
   position: absolute;
@@ -148,8 +157,15 @@ section.info {
   margin: auto;
   height: auto;
   width: auto;
+  max-width: 150px;
+  max-height: 100px;
+}
+.img-wrap {
   width: 150px;
   height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 figure.photo {

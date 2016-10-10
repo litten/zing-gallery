@@ -239,7 +239,10 @@ var initSecretAlbum = function(albumSlt) {
 var Main = (function() {
   function init() {
     initPhotoSwipeFromDOM('.photos');
-    initSecretAlbum('js-secret-album');
+    // 是否相册，但这个判断方式不好
+    if (document.getElementsByClassName('albums').length) {
+      initSecretAlbum('js-secret-album');
+    }
   }
   return {
     init: init
