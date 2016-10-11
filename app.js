@@ -1,5 +1,5 @@
-var resize = require('../lib/resize'),
-cfg = require('../config')
+var resize = require('./lib/resize'),
+cfg = require('./config')
 express = require('express'),
 port = process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 3000,
 host = process.env.OPENSHIFT_NODEJS_IP;
@@ -9,13 +9,13 @@ resize.init('./resources/photos')
 var app = express();
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-app.use(express.static(__dirname + '/assets'))
+app.use(express.static(__dirname + '/assets/dist/'))
 
-app.use('/', require('../lib/gallery.js')({
+app.use('/', require('./lib/gallery.js')({
   staticFiles : 'resources/photos',
   urlRoot : '/',
-  title : cfg.title || 'Whisht Gallery',
-  render : false // 
+  title : cfg.title || 'Zing Gallery',
+  render : false
 }), function(req, res, next){
   return res.render('gallery', Object.assign({ 
   	galleryHtml : req.html

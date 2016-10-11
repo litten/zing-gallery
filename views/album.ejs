@@ -1,14 +1,3 @@
-<link rel="stylesheet" type="text/css" href="./photoSwipe/photoswipe.css">
-<link rel="stylesheet" type="text/css" href="./photoSwipe/default-skin/default-skin.css">
-<script src="./photoSwipe/photoswipe-ui-default.min.js"></script>
-<script src="./photoSwipe/photoswipe.min.js"></script>
-<script src="./main.js"></script>
-<script src="./lazyload.min.js"></script>
-<script type="text/javascript">
-  var lazy = lazyload({
-    container: document.getElementsByTagName('body')[0]
-  });
-</script>
 <% if (!isRoot){ %>
   <nav class="breadcrumb">
   <% for (var i=0; i<breadcrumb.length; i++) { %>
@@ -41,6 +30,9 @@
           <figcaption itemprop="caption description"><%= album.name %></figcaption>
       </figure>
     <% }) %>
+    <% for (var i=0; i < 10; i++) {%>
+      <figure class="hide"></figure>
+    <% } %>
   </div>
   <div tabindex="-1" class="overlay js-overlay"></div>
   <div class="dialog js-dialog">
@@ -61,7 +53,9 @@
           <div style="display:none">
             <% if (photo.exif) {%>
             <p class="exif-p"><b>相机：</b><span><%= photo.exif.Model %></span></p>
-            <p class="exif-p"><b>时间：</b><span><%= photo.exif.Time %></span></p>
+            <% if (!noDate) {%>
+              <p class="exif-p"><b>时间：</b><span><%= photo.exif.Time %></span></p>
+            <% } %>
             <p class="exif-p"><b>光圈：</b><span>F<%= photo.exif.FNumber %></span></p>
             <p class="exif-p"><b>焦距：</b><span><%= photo.exif.focalLength %></span></p>
             <p class="exif-p"><b>ISO：</b><span><%= photo.exif.ISO %></span></p>

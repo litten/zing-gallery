@@ -5,7 +5,7 @@
 body {
   position: relative;
   height: 100%;
-  background: url(./img/bg.png) repeat;
+  background: url(./img/bg.png) repeat #dde1e5;
   font-family: lucida grande,lucida sans unicode,lucida,helvetica,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif;
 }
 
@@ -50,23 +50,6 @@ section.info {
   padding: 60px;
   position: relative;
   z-index: 1;
-}
-.layout:after {
-  display: none;
-  content: '';
-  background: url(./img/preloader.gif) no-repeat center center;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  -webkit-transition: opacity 300ms;
-  -moz-transition: opacity 300ms;
-  -o-transition: opacity 300ms;
-  -ms-transition: opacity 300ms;
-  transition: opacity 300ms;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
-  opacity: 1;
 }
 
 .albums, .photos {

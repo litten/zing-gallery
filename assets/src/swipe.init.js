@@ -1,3 +1,6 @@
+var PhotoSwipe = require('./photoSwipe/photoswipe.min')
+var PhotoSwipeUI_Default = require('./photoSwipe/photoswipe-ui-default')
+
 var initPhotoSwipeFromDOM = function(gallerySelector) {
 
   // parse slide data (url, title, size ...) from DOM elements 
@@ -236,19 +239,14 @@ var initSecretAlbum = function(albumSlt) {
     window.location.href = (baseUrl + '?password=' + $input.value);
   })
 }
-var Main = (function() {
-  function init() {
-    initPhotoSwipeFromDOM('.photos');
-    // 是否相册，但这个判断方式不好
-    if (document.getElementsByClassName('albums').length) {
-      initSecretAlbum('js-secret-album');
-    }
+function init() {
+  initPhotoSwipeFromDOM('.photos');
+  // 是否相册，但这个判断方式不好
+  if (document.getElementsByClassName('albums').length) {
+    initSecretAlbum('js-secret-album');
   }
-  return {
-    init: init
-  }
-})();
+}
 
-window.onload = function() {
-  Main.init()
+module.exports = {
+  init: init
 }
