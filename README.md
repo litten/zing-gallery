@@ -5,7 +5,7 @@ Zing Gallery
 
 ### 1、功能
 
-体验可访问[Demo](http://120.24.181.238/gallery/)
+此[Demo](http://120.24.181.238/gallery/)供体验。
 
 * 自动获取照片信息（快门、光圈、ISO、时间等）
 * 自由为相册设置信息（封面、名称、描述）
@@ -30,8 +30,11 @@ Zing Gallery
 #### 3.2 设置相册信息
 
 比如有一个叫xxx的相册，它的位置应该是``resources/photos/xxx``
+
 新建一个info.json文件，位置是``resources/photos/xxx/info.json``
+
 通过这个文件，可以设置相册信息：
+
 ```
 {
   "description" : "1983年小巷12月晴朗……",     // 该相册的描述；如果没有，则不展示
@@ -41,8 +44,11 @@ Zing Gallery
 }
 ```
 
+
 ### 4、前端开发者
 
 如果你是前端开发者，需要做一些页面上的定制，你需要使用webpack进行开发。
+
 执行命令``npm run dev``（不压缩，一般开发时用）或``npm run dist``（压缩）
+
 将``assets/src``里的源文件编译到``assets/dist``目录。
