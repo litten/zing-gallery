@@ -10,9 +10,8 @@
   </nav>
 <% } %>
 
-<h1 class="album-title"><%= name %></h1>
-
 <% if (albums.length>0){ %>
+  <h1 class="album-title"><%= name %></h1>
   <h2><%= albums.length %>个相册</h2>
   <div class="albums">
     <% albums.forEach(function(album){ %>
@@ -42,7 +41,7 @@
 <% } %>
 
 <% if (photos.length > 0){ %>
-<h2><%= description %></h2>
+<h2 class="des-title"><%= description %></h2>
 <div class="photos" itemscope itemtype="http://schema.org/ImageGallery">
   <% photos.forEach(function(photo){ %>
       <figure class="thumb" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -52,14 +51,12 @@
           <figcaption itemprop="caption description"><%= photo.name %></figcaption>
           <div style="display:none">
             <% if (photo.exif) {%>
-            <p class="exif-p"><b>相机：</b><span><%= photo.exif.Model %></span></p>
-            <% if (!noDate) {%>
-              <p class="exif-p"><b>时间：</b><span><%= photo.exif.Time %></span></p>
+            <p class="exif-p"><b><i class="icon-camera"></i></b><span><%= photo.exif.Model %></span></p>
+            <p class="exif-p"><b><i class="icon-image"></i></b><span>f/<%= photo.exif.FNumber %>, <%= photo.exif.speed %>s, ISO<%= photo.exif.ISO %></span></p>
+            <p class="exif-p"><b><i class="icon-film"></i></b><span><%= photo.exif.focalLength %>mm</span></p>
             <% } %>
-            <p class="exif-p"><b>光圈：</b><span>F<%= photo.exif.FNumber %></span></p>
-            <p class="exif-p"><b>焦距：</b><span><%= photo.exif.focalLength %></span></p>
-            <p class="exif-p"><b>ISO：</b><span><%= photo.exif.ISO %></span></p>
-            <p class="exif-p"><b>快门：</b><span><%= photo.exif.speed %></span></p>
+            <% if (!noDate) {%>
+              <p class="exif-p"><b><i class="icon-clock"></i></b><span><%= photo.exif.Time %></span></p>
             <% } %>
           </div>
       </figure>

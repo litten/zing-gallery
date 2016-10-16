@@ -4,7 +4,7 @@
 }
 body {
   position: relative;
-  height: 100%;
+  margin-bottom: 30px;
   background: url(./img/bg.png) repeat #dde1e5;
   font-family: lucida grande,lucida sans unicode,lucida,helvetica,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif;
 }
@@ -13,6 +13,16 @@ body {
   padding-left: 10px;
   margin-bottom: 30px;
   color: #159bfd;
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  background: rgba(27, 27, 27, 0.9);
+  height: 50px;
+  line-height: 50px;
+  left: 0;
+  top: 0;
+  font-family: Menlo,Monaco,Andale Mono,lucida console,Courier New,monospace;
+  text-shadow: 0 1px #0a0c10;
 }
 .breadcrumb a {
   color: #159bfd;
@@ -25,7 +35,10 @@ h1, h2, h3 {
 }
 
 .album-title {
-  margin-bottom: 20px;
+  margin: 0px 0 20px;
+}
+.des-title {
+  margin: 60px 0 10px;
 }
 
 h2 {
@@ -44,6 +57,9 @@ section.info {
   width: 50%;
   float: left;
 }
+.exif-p b {
+  margin-right: 10px;
+}
 
 .layout {
   color: #333;
@@ -53,7 +69,6 @@ section.info {
 }
 
 .albums, .photos {
-  margin-top: 20px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -196,8 +211,12 @@ section.info table td:first-child {
     padding: 10px;
   }
   .thumb {
-    margin: 10px auto;
-    float: initial;
+    margin: 10px 0;
+  }
+}
+@media screen and (max-width:350px) {
+  .albums, .photos {
+    justify-content: center;
   }
 }
 
@@ -254,6 +273,27 @@ section.info table td:first-child {
   z-index: 4000;
   display: none;
 }
+
+.footer {
+  font-size: 12px;
+  font-family: Menlo,Monaco,Andale Mono,lucida console,Courier New,monospace;
+  text-shadow: 0 1px #fff;
+  position: absolute;
+  opacity: .6;
+  width: 100%;
+  text-align: center;
+  padding-top: 40px;
+  height: 30px;
+  box-sizing: border-box;
+  bottom: 0;
+  left: 0;
+}
+.footer a {
+  background: transparent;
+  text-decoration: none;
+  color: #08c;
+}
+
 @font-face {
   font-family: 'icomoon';
   src:  url('fonts/icomoon.eot?j5npn0');
