@@ -51,13 +51,23 @@
           <figcaption itemprop="caption description"><%= photo.name %></figcaption>
           <div style="display:none">
             <% if (photo.exif) {%>
-            <p class="exif-p"><b><i class="icon-camera"></i></b><span><%= photo.exif.Model %></span></p>
-            <p class="exif-p"><b><i class="icon-image"></i></b><span>f/<%= photo.exif.FNumber %>, <%= photo.exif.speed %>s, ISO<%= photo.exif.ISO %></span></p>
-            <p class="exif-p"><b><i class="icon-film"></i></b><span><%= photo.exif.focalLength %>mm</span></p>
+              <% if (photo.exif.Model) {%>
+                <p class="exif-p"><b><i class="icon-camera"></i></b><span><%= photo.exif.Model %></span></p>
+              <% } %>
+
+              <% if (photo.exif.FNumber || photo.exif.speed || photo.exif.ISO) {%>
+                <p class="exif-p"><b><i class="icon-image"></i></b><span>f/<%= photo.exif.FNumber %>, <%= photo.exif.speed %>s, ISO<%= photo.exif.ISO %></span></p>
+              <% } %>
+
+              <% if (photo.exif.focalLength) {%>
+                <p class="exif-p"><b><i class="icon-film"></i></b><span><%= photo.exif.focalLength %>mm</span></p>
+              <% } %>
+
+              <% if (!noDate && photo.exif.Time) {%>
+                <p class="exif-p"><b><i class="icon-clock"></i></b><span><%= photo.exif.Time %></span></p>
+              <% } %>
             <% } %>
-            <% if (!noDate) {%>
-              <p class="exif-p"><b><i class="icon-clock"></i></b><span><%= photo.exif.Time %></span></p>
-            <% } %>
+            
           </div>
       </figure>
   <% }) %>
