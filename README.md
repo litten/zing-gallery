@@ -63,7 +63,8 @@ Web albums based on node.js, more simple to show photography photos
   "thumbnail" : "IMG_0424.jpg",             // 封面图；如果没有，则默认取第一张作为封面
   "name": "第七章",                          // 相册名；如果没有，则相册名为xxx
   "password": "233",						// 私密相册，密码为233
-  "noDate": false                           // 不展示时间；如果为true，则不展示照片时间信息；默认没有，即false
+  "noDate": false,                          // 不展示时间；如果为true，则不展示照片时间信息；默认没有，即false
+  "sort": 1									// 排序；为1时是时间逆序；默认或不填是时间正序
 }
 ```
 

@@ -231,6 +231,7 @@ var initSecretAlbum = function(albumSlt) {
   $overlay.addEventListener('click', function(e) {
     $dialog.style.display = 'none';
     $overlay.style.display = 'none';
+    $input.value = '';
   })
 
   $btn.addEventListener('click', function(e) {
@@ -238,6 +239,15 @@ var initSecretAlbum = function(albumSlt) {
     $overlay.style.display = 'none';
     window.location.href = (baseUrl + '?password=' + $input.value);
   })
+
+  document.onkeydown=function(event){
+    var e = event || window.event;         
+    if (e && e.keyCode === 13) {
+      if ($input.value !== '') {
+        window.location.href = (baseUrl + '?password=' + $input.value);
+      }
+    }
+  }
 }
 function init() {
   initPhotoSwipeFromDOM('.photos');

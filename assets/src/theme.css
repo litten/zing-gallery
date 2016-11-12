@@ -34,16 +34,25 @@ h1, h2, h3 {
   clear: both;
 }
 
-.album-title {
+.album-title-top, .album-title {
   margin: 0px 0 20px;
+  color: #383838;
+  text-shadow: 1px 1px 1px #fff;
 }
 .des-title {
-  margin: 60px 0 10px;
+  margin: 0px 0 10px;
+  color: #666;
+  text-shadow: 1px 1px 1px #fff;
 }
-
-h2 {
+.empty-title {
+  margin: 100px 10px;
+  text-align: center;
+  color: #666;
+  text-shadow: 1px 1px 1px #fff;
 }
-
+.icon-unlocked {
+  margin-right: 5px;
+}
 a {
   color: #333;
   text-decoration: none;
@@ -212,6 +221,16 @@ section.info table td:first-child {
   }
   .thumb {
     margin: 10px 0;
+  }
+  .album-title {
+    margin: 50px 0 0;
+    padding: 0;
+  }
+  .album-title-top {
+    padding: 0;
+  }
+  .des-title {
+    padding: 0;
   }
 }
 @media screen and (max-width:350px) {
