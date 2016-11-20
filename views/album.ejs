@@ -35,8 +35,10 @@
   </div>
   <div tabindex="-1" class="overlay js-overlay"></div>
   <div class="dialog js-dialog">
-    <input class="input-lock" type="text" placeholder="password needed" />
-    <a href="javascript:void(0);" title="确定" class="js-modal-yes btn-default"><i class="icon-unlocked"></i>确定</a>
+    <form action="./233" method="post" class="js-form">
+      <input class="input-lock" type="text" name="password" placeholder="password needed" />
+      <input type="submit" value="确定" class="js-modal-yes btn-default" />
+    </form>
   </div>
 <% } %>
 

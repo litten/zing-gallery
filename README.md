@@ -47,25 +47,54 @@ Web albums based on node.js, more simple to show photography photos
 
 #### 4.1 设置全局信息
 
-编辑``config.js``文件（目前仅有设置标题一项，待填坑…）
+编辑``config.js``文件
+
+```
+module.exports = {
+	title: 'Zing Gallery',					// 相册名
+	wording: {
+		noAccess: '抱歉，你没有权限访问'		// 无权限访问的提示
+	},
+	albums: {								// 相册信息，在文档4.2中详解
+		"贵阳": {
+			thumbnail : "IMG_0331.JPG",
+			sort: 1
+		}, 
+		"千户苗寨": {
+			description : "没有什么能够阻挡",
+			thumbnail : "IMG_0424.jpg",
+			name: "千户苗寨"
+		},
+		"私密": {
+			description : "私密",
+			name: "私密 | 密码是233",
+			password: "233"
+		}
+	}
+}
+```
 
 #### 4.2 设置相册信息
 
 比如有一个叫xxx的相册，它的位置应该是``resources/photos/xxx``
 
-新建一个info.json文件，位置是``resources/photos/xxx/info.json``
-
-通过这个文件，可以设置相册信息：
+编辑``config.js``文件的``albums``字段，增加一个``xxx``的对象，可以为其设置相册信息：
 
 ```
-{
-  "description" : "1983年小巷12月晴朗……",     // 该相册的描述；如果没有，则不展示
-  "thumbnail" : "IMG_0424.jpg",             // 封面图；如果没有，则默认取第一张作为封面
-  "name": "第七章",                          // 相册名；如果没有，则相册名为xxx
-  "password": "233",						// 私密相册，密码为233
-  "noDate": false,                          // 不展示时间；如果为true，则不展示照片时间信息；默认没有，即false
-  "sort": 1									// 排序；为1时是时间逆序；默认或不填是时间正序
+albums: {
+	"贵阳": {},
+	"千户苗寨": {},
+	"私密": {},
+	"xxx" : {
+		"description" : "1983年小巷12月晴朗……",     // 该相册的描述；如果没有，则不展示
+		"thumbnail" : "IMG_0424.jpg",             // 封面图；如果没有，则默认取第一张作为封面
+		"name": "第七章",                          // 相册名；如果没有，则相册名为xxx
+		"password": "233",						// 私密相册，密码为233
+		"noDate": false,                          // 不展示时间；如果为true，则不展示照片时间信息；默认没有，即false
+		"sort": 1									// 排序；为1时是时间逆序；默认或不填是时间正序
+	}
 }
+
 ```
 
 

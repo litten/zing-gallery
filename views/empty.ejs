@@ -2,4 +2,19 @@
   <a href="./"><%= title %></a>
 </nav>
 
-<h2 class="empty-title">Sorry, you don't have access</h2>
+<h2 class="empty-title"><%= wording %></h2>
+<p class="empty-sub-title"><span class="count">5</span>秒后自动返回首页…</p>
+
+<script>
+	window.onload = function() {
+		var $count = document.getElementsByClassName('count')[0];
+		var count = 5;
+		setInterval(function() {
+			$count.innerHTML = count;
+			count --;
+			if (count === 0) {
+				window.location.href = './';
+			}
+		}, 1000)
+	}
+</script>

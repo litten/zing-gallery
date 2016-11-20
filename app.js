@@ -16,12 +16,12 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/assets/dist/'))
 
-app.use('/', require('./lib/gallery.js')({
+app.use('/', require('./lib/gallery.js')(Object.assign({
   staticFiles : 'resources/photos',
   urlRoot : '/',
-  title : cfg.title || 'Zing Gallery',
+  title : 'Zing Gallery',
   render : false
-}), function(req, res, next){
+}, cfg)), function(req, res, next){
   return res.render('gallery', Object.assign({ 
   	galleryHtml : req.html
   }, cfg));

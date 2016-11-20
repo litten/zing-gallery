@@ -214,6 +214,7 @@ var initSecretAlbum = function(albumSlt) {
   var $overlay = document.getElementsByClassName('js-overlay')[0];
   var $btn = document.getElementsByClassName('js-modal-yes')[0];
   var $input = document.getElementsByClassName('input-lock')[0];
+  var $form = document.getElementsByClassName('js-form')[0];
   var baseUrl = '';
 
   for (var i = 0, len = albumElements.length; i < len; i++) {
@@ -222,6 +223,7 @@ var initSecretAlbum = function(albumSlt) {
         baseUrl = this.getAttribute('data-href');
         $dialog.style.display = 'flex';
         $overlay.style.display = 'initial';
+        $form.setAttribute('action', baseUrl);
         $input.value = '';
         $input.focus();
       })
@@ -237,7 +239,9 @@ var initSecretAlbum = function(albumSlt) {
   $btn.addEventListener('click', function(e) {
     $dialog.style.display = 'none';
     $overlay.style.display = 'none';
-    window.location.href = (baseUrl + '?password=' + $input.value);
+    console.log($btn)
+    // $btn.submit();
+    // window.location.href = (baseUrl + '?password=' + $input.value);
   })
 
   document.onkeydown=function(event){

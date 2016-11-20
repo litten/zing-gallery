@@ -50,6 +50,11 @@ h1, h2, h3 {
   color: #666;
   text-shadow: 1px 1px 1px #fff;
 }
+.empty-sub-title {
+  text-align: center;
+  color: #888;
+  text-shadow: 1px 1px 1px #fff;
+}
 .icon-unlocked {
   margin-right: 5px;
 }
@@ -273,10 +278,11 @@ section.info table td:first-child {
   font-size: 14px;
   text-decoration: none;
   text-align: center;
-  border: 0;
+  border: 1px solid #188eee;
   background-color: #188eee;
   color: #fff;
   padding: 5px 20px;
+  line-height: 18px;
 }
 .btn-default:active {
   color: #fff;
