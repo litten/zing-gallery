@@ -213,17 +213,20 @@ var initSecretAlbum = function(albumSlt) {
   var $dialog = document.getElementsByClassName('js-dialog')[0];
   var $overlay = document.getElementsByClassName('js-overlay')[0];
   var $btn = document.getElementsByClassName('js-modal-yes')[0];
-  var $input = document.getElementsByClassName('input-lock')[0];
+  var $input = document.getElementsByClassName('js-input-lock')[0];
   var $form = document.getElementsByClassName('js-form')[0];
   var baseUrl = '';
+  var tips = '';
 
   for (var i = 0, len = albumElements.length; i < len; i++) {
     (function(i) {
       albumElements[i].addEventListener('click', function(e) {
         baseUrl = this.getAttribute('data-href');
+        tips = this.getAttribute('data-tips');
         $dialog.style.display = 'flex';
         $overlay.style.display = 'initial';
         $form.setAttribute('action', baseUrl);
+        $input.setAttribute('placeholder', tips);
         $input.value = '';
         $input.focus();
       })

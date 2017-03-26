@@ -15,8 +15,9 @@ module.exports = {
 		},
 		"私密": {
 		  description : "私密",
-		  name: "私密 | 密码是233",
-		  password: "233"
+		  name: "私密",
+		  password: "233",
+			passwordTips: "密码是233"
 		}
 	}
 }
