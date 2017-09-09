@@ -1,6 +1,6 @@
 module.exports = {
 	title: 'Zing Gallery',
-	avatar: '/img/avatar.png',
+	avatar: './img/avatar.png',
 	wording: {
 		noAccess: '抱歉，你没有权限访问'
 	},
