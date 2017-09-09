@@ -2,14 +2,28 @@
 <head>
 	<title><%- title %></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<script src="./main.js"></script>
+	<link rel="stylesheet" type="text/css" href="./main.css">
 </head>
 <body>
+	<header>
+		<a href="./">
+			<img src="<%= avatar %>" class="header-avater" />
+		</a>
+		<a href="./">
+			<h1 class="header-title"><%= title %></h1>
+		</a>
+		<ul class="m-nav">
+			<li><a href="/">首页</a><span class="sep">/</span></li>
+			<li><a href="javascript:void(0)" onclick="alert('一个正在实现中的功能…')">分享</a><span class="sep">/</span></li>
+			<li><a href="javascript:void(0)" onclick="alert('一个正在实现中的功能…')">搜索</a></li>
+		</ul>
+	</header>
   <div class="layout">
   	<%- galleryHtml %>
   </div>
   <footer class="footer">
   	<p>Powered by <a href="https://github.com/litten/zing-gallery" target="_blank">zing-gallery</a></p>
   </footer>
+	<script src="./main.js"></script>
 </body>
 </html>

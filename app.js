@@ -10,8 +10,7 @@ resize.init(photosPath)
 var app = express();
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-app.use(express.static(__dirname + '/assets/dist/'))
-
+app.use(express.static(__dirname + '/assets/dist/'));
 app.use('/', require('./lib/gallery.js')(Object.assign({
   staticFiles : 'resources/photos',
   urlRoot : '/',
@@ -26,4 +25,4 @@ app.use('/', require('./lib/gallery.js')(Object.assign({
 
 app.listen(port, host);
 host = host || 'localhost';
-console.log('node-gallery listening on ' + host  + ':' + port);
+console.log('zing-gallery listening on ' + host  + ':' + port);

@@ -3,8 +3,6 @@ module.exports = lazyload;
 var inViewport = require('in-viewport');
 var lazyAttrs = ['data-src'];
  
-global.lzld = lazyload();
- 
 // Provide libs using getAttribute early to get the good src
 // and not the fake data-src
 replaceGetAttribute('Image');
@@ -18,11 +16,15 @@ function registerLazyAttr(attr) {
  
 function lazyload(opts) {
   opts = merge({
-    'offset': 333,
-    'src': 'data-src',
-    'container': false
+    wrap: {},
+    src: 'data-src',
+    container: false,
   }, opts || {});
- 
+  
+  var elt = opts.$target;
+  var wrapW = opts.wrap.width;
+  var wrapH = opts.wrap.height;
+
   if (typeof opts.src === 'string') {
     registerLazyAttr(opts.src);
   }
@@ -33,7 +35,27 @@ function lazyload(opts) {
     var src = findRealSrc(elt);
  
     if (src) {
-      elt.src = src;
+      var $preloadImg = new Image();
+      $preloadImg.src = src;
+      $preloadImg.onload = function() {
+        elt.removeAttribute('data-not-lz');
+        var preW = $preloadImg.width;
+        var preH = $preloadImg.height
+        if (wrapW / wrapH < preW / preH) {
+          elt.style.height = wrapH;
+          var result = (wrapW - wrapH * preW / preH) / 2;
+          if (result < 0) {
+            elt.style.marginLeft = result + 'px';
+          }
+        } else {
+          elt.style.width = wrapW;
+          var result = (wrapH - wrapW * preH / preW) / 2;
+          if (result < 0) {
+            elt.style.marginTop = result + 'px';
+          }
+        }
+        elt.src = src;
+      }
     }
  
     elt.setAttribute('data-lzled', true);
@@ -62,8 +84,7 @@ function lazyload(opts) {
       inViewport(elt, opts, show);
     }
   }
- 
-  return register;
+  register(elt);
 }
  
 function replaceGetAttribute(elementName) {

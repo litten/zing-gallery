@@ -1,20 +1,21 @@
 module.exports = {
 	title: 'Zing Gallery',
+	avatar: '/img/avatar.png',
 	wording: {
 		noAccess: '抱歉，你没有权限访问'
 	},
 	albums: {
-		"贵阳": {
-		  thumbnail : "IMG_0331.JPG",
+		"青海湖": {
+			thumbnail: "打马而过.jpg",
 		  sort: 1
 		}, 
-		"千户苗寨": {
+		"江南小镇": {
 		  description : "没有什么能够阻挡",
-		  thumbnail : "IMG_0424.jpg",
-		  name: "千户苗寨"
+			thumbnail: "燕歌行.jpg",
+		  name: "南浔"
 		},
 		"私密": {
-		  description : "私密",
+			description: "这是一个需要密码的相册",
 		  name: "私密",
 		  password: "233",
 			passwordTips: "密码是233"
