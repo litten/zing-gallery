@@ -1,6 +1,5 @@
 .project
 .idea
-*/.vscode
 .settings
 .DS_Store
 */.DS_Store
