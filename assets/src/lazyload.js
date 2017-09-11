@@ -38,7 +38,6 @@ function lazyload(opts) {
       var $preloadImg = new Image();
       $preloadImg.src = src;
       $preloadImg.onload = function() {
-        elt.removeAttribute('data-not-lz');
         var preW = $preloadImg.width;
         var preH = $preloadImg.height
         if (wrapW / wrapH < preW / preH) {
@@ -55,6 +54,7 @@ function lazyload(opts) {
           }
         }
         elt.src = src;
+        elt.removeAttribute('data-not-lz');
       }
     }
  
