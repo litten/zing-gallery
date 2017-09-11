@@ -20,7 +20,7 @@
               <i class="icon-lock"></i>
             </div>
           <% } else { %>
-          <a href="<%= config.cdnDomain %><%= album.url %>" class="img-wrap">
+          <a href="./<%= album.url %>" class="img-wrap">
           <% } %>
             <img class="js-image" alt="<%= album.name %>" data-src="<%= config.cdnDomain %><%= album.url %>?tn=1" src="./img/preloader.gif" itemprop="thumbnail" data-not-lz="true" />
           </a>
