@@ -1,4 +1,5 @@
 module.exports = {
+	cdnDomain: '/',
 	title: 'Zing Gallery',
 	avatar: './img/avatar.png',
 	wording: {

@@ -4,7 +4,7 @@
   <% if (i==breadcrumb.length-1){ %>
     <%= breadcrumb[i].name %>
   <% }else{ %>
-    <a href="/<%= breadcrumb[i].url %>"> <%= breadcrumb[i].name %> &raquo; </a>
+    <a href="./<%= breadcrumb[i].url %>"> <%= breadcrumb[i].name %> &raquo; </a>
   <% } %>
 
 <% } %>
@@ -13,8 +13,8 @@
 <h1 class="photo-title"><%= name %></h1>
 
 <figure class="photo">
-  <a href="/<%= src %>">
-    <img src="/<%= src %>?tn=0" alt="<%= name%>">
+  <a href="<%= config.cdnDomain %><%= src %>">
+    <img src="<%= config.cdnDomain %><%= src %>?tn=0" alt="<%= name%>">
   </a>
   <figcaption>
     <% if (exif && exif.Description){ %>

@@ -20,9 +20,9 @@
               <i class="icon-lock"></i>
             </div>
           <% } else { %>
-          <a href="./<%= album.url %>" class="img-wrap">
+          <a href="<%= config.cdnDomain %><%= album.url %>" class="img-wrap">
           <% } %>
-            <img class="js-image" alt="<%= album.name %>" data-src="./<%= album.url %>?tn=1" src="./img/preloader.gif" itemprop="thumbnail" data-not-lz="true" />
+            <img class="js-image" alt="<%= album.name %>" data-src="<%= config.cdnDomain %><%= album.url %>?tn=1" src="./img/preloader.gif" itemprop="thumbnail" data-not-lz="true" />
           </a>
           <figcaption itemprop="caption description"><%= album.name %></figcaption>
       </figure>
@@ -51,7 +51,7 @@
   <% photos.forEach(function(photo){ %>
       <figure class="thumb" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
           <a class="img-wrap" href="./<%= photo.src %>" itemprop="contentUrl" data-size="<%= photo.size %>">
-            <img class="js-image" data-not-lz="true" alt="<%= photo.name %>" data-src="./<%= photo.src %>?tn=1" src="./img/preloader.gif" itemprop="thumbnail"/>
+            <img class="js-image" data-not-lz="true" alt="<%= photo.name %>" data-src="<%= config.cdnDomain %><%= photo.src %>?tn=1" src="./img/preloader.gif" itemprop="thumbnail"/>
           </a>
           <figcaption itemprop="caption description"><%= photo.name %></figcaption>
           <div style="display:none">
