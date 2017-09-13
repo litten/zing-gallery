@@ -88,6 +88,10 @@ function lazyload(opts) {
       inView(opts.selector).on('enter', show);
       isInit = true;
     }
+
+    if (inView.is(elt)) {
+      show(elt);
+    }
   }
   register(elt);
 }
