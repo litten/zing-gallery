@@ -23,7 +23,7 @@
     "imagemagick": "^0.1.3",
     "imagemagick-stream": "^1.1.0",
     "images": "^3.0.0",
-    "in-viewport": "^3.4.1",
+    "in-viewport": "^3.5.0",
     "memory-cache": "*",
     "style-loader": "^0.13.1",
     "underscore": "*",

@@ -22,11 +22,13 @@ var lazy = {
 			wrap.width = rectObj.width;
 			wrap.height = rectObj.height;
 		}
+		
 		for (var i = 0, len = $img.length; i < len; i++) {
 			lazyload({
 				container: document.getElementsByTagName('body')[0],
 				wrap: wrap,
-				$target: $img[i]
+				$target: $img[i],
+				selector: '.js-image'
 			})
 		}
 	}

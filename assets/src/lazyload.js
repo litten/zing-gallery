@@ -1,12 +1,14 @@
 module.exports = lazyload;
  
-var inViewport = require('in-viewport');
+var inView = require('in-view');
 var lazyAttrs = ['data-src'];
- 
+
+var isInit = false;
+
 // Provide libs using getAttribute early to get the good src
 // and not the fake data-src
-replaceGetAttribute('Image');
-replaceGetAttribute('IFrame');
+// replaceGetAttribute('Image');
+// replaceGetAttribute('IFrame');
  
 function registerLazyAttr(attr) {
   if (indexOf.call(lazyAttrs, attr) === -1) {
@@ -32,6 +34,9 @@ function lazyload(opts) {
   var elts = [];
  
   function show(elt) {
+    if (elt.getAttribute('data-lzled')) {
+      return;
+    }
     var src = findRealSrc(elt);
  
     if (src) {
@@ -55,10 +60,9 @@ function lazyload(opts) {
         }
         elt.src = src;
         elt.removeAttribute('data-not-lz');
+        elt.setAttribute('data-lzled', true);
       }
     }
- 
-    elt.setAttribute('data-lzled', true);
     elts[indexOf.call(elts, elt)] = null;
   }
  
@@ -80,8 +84,9 @@ function lazyload(opts) {
     elt.onerror = null;
     elt.removeAttribute('onerror');
  
-    if (indexOf.call(elts, elt) === -1) {
-      inViewport(elt, opts, show);
+    if (indexOf.call(elts, elt) === -1 && !isInit) {
+      inView(opts.selector).on('enter', show);
+      isInit = true;
     }
   }
   register(elt);
