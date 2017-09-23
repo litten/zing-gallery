@@ -49,7 +49,7 @@
 </div>
 <div class="photos" itemscope itemtype="http://schema.org/ImageGallery">
   <% photos.forEach(function(photo){ %>
-      <figure class="thumb js-thumb" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+      <figure class="thumb js-thumb js-photos-thumb" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
           <a class="img-wrap" href="./<%= photo.src %>" itemprop="contentUrl" data-size="<%= photo.size %>">
             <img class="js-image" data-not-lz="true" alt="<%= photo.name %>" data-src="<%= config.cdnDomain %><%= photo.src %>?tn=1" src="./img/preloader.gif" itemprop="thumbnail"/>
           </a>

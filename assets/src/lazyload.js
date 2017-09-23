@@ -30,52 +30,54 @@ function lazyload(opts) {
  
   var elts = [];
 
-  function show(elt) {
-    if (elt.getAttribute('data-lzled')) {
-      return;
+  function setSize(elt, preW, preH) {
+    var $wrapArr = document.getElementsByClassName('img-wrap');
+    var wrap = {
+      width: 300,
+      height: 200
     }
-    var src = findRealSrc(elt);
-    if (src) {
-      var $preloadImg = new Image();
-      $preloadImg.src = src;
-      $preloadImg.onload = function() {
-        elt.src = '';
-
-        var preW = $preloadImg.width;
-        var preH = $preloadImg.height;
-
-        var $wrapArr = document.getElementsByClassName('img-wrap');
-        var wrap = {
-          width: 300,
-          height: 200
-        }
-        if ($wrapArr && $wrapArr[0]) {
-          var rectObj = $wrapArr[0].getBoundingClientRect();
-          wrap.width = rectObj.width;
-          wrap.height = rectObj.height;
-        }
-        var wrapW = wrap.width;
-        var wrapH = wrap.height;
-        if (wrapW / wrapH < preW / preH) {
-          elt.style.height = wrapH;
-          var result = (wrapW - wrapH * preW / preH) / 2;
-          if (result < 0) {
-            elt.style.marginLeft = result + 'px';
-          }
-        } else {
-          elt.style.width = wrapW;
-          var result = (wrapH - wrapW * preH / preW) / 2;
-          if (result < 0) {
-            elt.style.marginTop = result + 'px';
-          }
-        }
-
-        elt.src = src;
-        elt.removeAttribute('data-not-lz');
-        elt.setAttribute('data-lzled', true);
+    if ($wrapArr && $wrapArr[0]) {
+      var rectObj = $wrapArr[0].getBoundingClientRect();
+      wrap.width = rectObj.width;
+      wrap.height = rectObj.height;
+    }
+    var wrapW = wrap.width;
+    var wrapH = wrap.height;
+    if (wrapW / wrapH < preW / preH) {
+      elt.style.height = wrapH;
+      var result = (wrapW - wrapH * preW / preH) / 2;
+      if (result < 0) {
+        elt.style.marginLeft = result + 'px';
+      }
+    } else {
+      elt.style.width = wrapW;
+      var result = (wrapH - wrapW * preH / preW) / 2;
+      if (result < 0) {
+        elt.style.marginTop = result + 'px';
       }
     }
-    elts[indexOf.call(elts, elt)] = null;
+  }
+
+  function show(elt) {
+    if (elt.getAttribute('data-lzled')) {
+      setSize(elt, elt.naturalWidth, elt.naturalHeight);
+    } else {
+      var src = findRealSrc(elt);
+      if (src) {
+        var $preloadImg = new Image();
+        $preloadImg.src = src;
+        $preloadImg.onload = function () {
+          elt.src = '';
+          var preW = $preloadImg.width;
+          var preH = $preloadImg.height;
+          setSize(elt, preW, preH);
+          elt.src = src;
+          elt.removeAttribute('data-not-lz');
+          elt.setAttribute('data-lzled', true);
+        }
+      }
+      elts[indexOf.call(elts, elt)] = null;
+    }
   }
  
   function findRealSrc(elt) {

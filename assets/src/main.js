@@ -28,9 +28,7 @@ var resizeHandle = function () {
 	var iw = window.innerWidth;
 	var ih = window.innerHeight;
 	if (iw <= 700) {
-		var $photos = document.getElementsByClassName('photos');
-		if ($photos.length === 0) return;
-		var $thumbs = $photos[0].getElementsByClassName('thumb');
+		var $thumbs = document.getElementsByClassName('js-photos-thumb');
 		var width;
 		if (iw >= ih) {
 			// 横屏
@@ -43,16 +41,11 @@ var resizeHandle = function () {
 			$thumbs[i].style.width = width;
 		}
 	}
-	var $image = document.getElementsByClassName('js-image');
-	for (var i = 0, len = $image.length; i < len; i++) {
-		$image[i].removeAttribute('data-lzled');
-	}
-	
+	lazy.init();
 }
 
 window.onload = function() {
 	resizeHandle();
-	lazy.init();
 	swipe.init();
 	if (supportOrientation) {
 		window.addEventListener('orientationchange', resizeHandle);
