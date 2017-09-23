@@ -32,7 +32,7 @@ function lazyload(opts) {
 
   function show(elt) {
     if (elt.getAttribute('data-lzled')) {
-      //return;
+      return;
     }
     var src = findRealSrc(elt);
     if (src) {
@@ -40,7 +40,7 @@ function lazyload(opts) {
       $preloadImg.src = src;
       $preloadImg.onload = function() {
         elt.src = '';
-        
+
         var preW = $preloadImg.width;
         var preH = $preloadImg.height;
 
