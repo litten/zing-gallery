@@ -27,10 +27,10 @@ var lazy = {
 var resizeHandle = function () {
 	var iw = window.innerWidth;
 	var ih = window.innerHeight;
-	var $photos = document.getElementsByClassName('photos');
-	if ($photos.length === 0) return;
-	var $thumbs = $photos[0].getElementsByClassName('thumb');
 	if (iw <= 700) {
+		var $photos = document.getElementsByClassName('photos');
+		if ($photos.length === 0) return;
+		var $thumbs = $photos[0].getElementsByClassName('thumb');
 		var width;
 		if (iw >= ih) {
 			// 横屏
@@ -43,8 +43,9 @@ var resizeHandle = function () {
 			$thumbs[i].style.width = width;
 		}
 	}
-	for (var i = 0, len = $thumbs.length; i < len; i++) {
-		$thumbs[i].removeAttribute('data-lzled');
+	var $image = document.getElementsByClassName('js-image');
+	for (var i = 0, len = $image.length; i < len; i++) {
+		$image[i].removeAttribute('data-lzled');
 	}
 	
 }
