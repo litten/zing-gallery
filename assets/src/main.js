@@ -12,21 +12,9 @@ var lazyload = require('./lazyload')
 var lazy = {
 	init: function() {
 		var $img = document.getElementsByClassName('js-image');
-		var $wrapArr = document.getElementsByClassName('img-wrap');
-		var wrap = {
-			width: 300,
-			height: 200
-		}
-		if ($wrapArr && $wrapArr[0]) {
-			var rectObj = $wrapArr[0].getBoundingClientRect();
-			wrap.width = rectObj.width;
-			wrap.height = rectObj.height;
-		}
-		
 		for (var i = 0, len = $img.length; i < len; i++) {
 			lazyload({
 				container: document.getElementsByTagName('body')[0],
-				wrap: wrap,
 				$target: $img[i],
 				selector: '.js-image'
 			})
@@ -34,7 +22,30 @@ var lazy = {
 	}
 }
 
+var resizeHandle = function () {
+	var iw = window.innerWidth;
+	var ih = window.innerHeight;
+	if (iw <= 700) {
+		var $photos = document.getElementsByClassName('photos');
+		if ($photos.length === 0) return;
+		var $thumbs = $photos[0].getElementsByClassName('thumb');
+		var width;
+		if (iw >= ih) {
+			// 横屏
+			width = '25%';
+		} else {
+			// 竖屏
+			width = '33.333333%';
+		}
+		for (var i = 0, len = $thumbs.length; i < len; i++) {
+			$thumbs[i].style.width = width;
+		}
+	}
+}
+
 window.onload = function() {
-	swipe.init();
+	resizeHandle();
 	lazy.init();
+	swipe.init();
+	window.addEventListener('resize', resizeHandle);
 }

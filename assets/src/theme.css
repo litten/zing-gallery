@@ -135,8 +135,10 @@ section.info {
 }
 .hide{
   width: 300px;
-  margin: 0 10px;
-  padding: 0 8px;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
   visibility: hidden;
 }
 
@@ -238,6 +240,10 @@ section.info table td:first-child {
   }
   .albums .thumb {
     margin: 10px auto;
+  }
+  .albums .thumb.hide {
+    margin: 0;
+    border: 0;
   }
   .album-header {
     width: 80%;

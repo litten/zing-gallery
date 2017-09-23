@@ -18,33 +18,46 @@ function registerLazyAttr(attr) {
  
 function lazyload(opts) {
   opts = merge({
-    wrap: {},
     src: 'data-src',
     container: false,
   }, opts || {});
   
   var elt = opts.$target;
-  var wrapW = opts.wrap.width;
-  var wrapH = opts.wrap.height;
 
   if (typeof opts.src === 'string') {
     registerLazyAttr(opts.src);
   }
  
   var elts = [];
- 
+
   function show(elt) {
     if (elt.getAttribute('data-lzled')) {
-      return;
+      //return;
     }
     var src = findRealSrc(elt);
- 
     if (src) {
       var $preloadImg = new Image();
       $preloadImg.src = src;
       $preloadImg.onload = function() {
+        elt.src = src;
+        elt.removeAttribute('data-not-lz');
+        elt.setAttribute('data-lzled', true);
+        
         var preW = $preloadImg.width;
-        var preH = $preloadImg.height
+        var preH = $preloadImg.height;
+
+        var $wrapArr = document.getElementsByClassName('img-wrap');
+        var wrap = {
+          width: 300,
+          height: 200
+        }
+        if ($wrapArr && $wrapArr[0]) {
+          var rectObj = $wrapArr[0].getBoundingClientRect();
+          wrap.width = rectObj.width;
+          wrap.height = rectObj.height;
+        }
+        var wrapW = wrap.width;
+        var wrapH = wrap.height;
         if (wrapW / wrapH < preW / preH) {
           elt.style.height = wrapH;
           var result = (wrapW - wrapH * preW / preH) / 2;
@@ -58,9 +71,6 @@ function lazyload(opts) {
             elt.style.marginTop = result + 'px';
           }
         }
-        elt.src = src;
-        elt.removeAttribute('data-not-lz');
-        elt.setAttribute('data-lzled', true);
       }
     }
     elts[indexOf.call(elts, elt)] = null;
@@ -73,7 +83,13 @@ function lazyload(opts) {
  
     return elt.getAttribute(opts.src);
   }
- 
+  
+  function resizeHandle() {
+    if (inView.is(elt)) {
+      show(elt);
+    }
+  }
+
   function register(elt) {
     // unsubscribe onload
     // needed by IE < 9, otherwise we get another onload when changing the src
@@ -89,9 +105,8 @@ function lazyload(opts) {
       isInit = true;
     }
 
-    if (inView.is(elt)) {
-      show(elt);
-    }
+    resizeHandle();
+    window.addEventListener('resize', resizeHandle);
   }
   register(elt);
 }

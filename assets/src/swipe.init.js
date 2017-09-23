@@ -6,7 +6,7 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
   // parse slide data (url, title, size ...) from DOM elements 
   // (children of gallerySelector)
   var parseThumbnailElements = function(el) {
-    var thumbElements = el.getElementsByClassName('thumb'),
+    var thumbElements = el.getElementsByClassName('js-thumb'),
       numNodes = thumbElements.length,
       items = [],
       figureEl,
