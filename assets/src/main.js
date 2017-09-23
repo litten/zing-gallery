@@ -3,6 +3,8 @@ require('./theme.css')
 require('./photoSwipe/photoswipe.css')
 require('./photoSwipe/default-skin/default-skin.css')
 
+var supportOrientation = (typeof window.orientation === 'number' && typeof window.onorientationchange === 'object');
+
 // js
 var swipe = require('./swipe.init')
 var lazyload = require('./lazyload')
@@ -47,5 +49,9 @@ window.onload = function() {
 	resizeHandle();
 	lazy.init();
 	swipe.init();
-	window.addEventListener('resize', resizeHandle);
+	if (supportOrientation) {
+		window.addEventListener('orientationchange', resizeHandle);
+	} else {
+		window.addEventListener('resize', resizeHandle);
+	}
 }

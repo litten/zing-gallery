@@ -39,9 +39,7 @@ function lazyload(opts) {
       var $preloadImg = new Image();
       $preloadImg.src = src;
       $preloadImg.onload = function() {
-        elt.src = src;
-        elt.removeAttribute('data-not-lz');
-        elt.setAttribute('data-lzled', true);
+        elt.src = '';
         
         var preW = $preloadImg.width;
         var preH = $preloadImg.height;
@@ -71,6 +69,10 @@ function lazyload(opts) {
             elt.style.marginTop = result + 'px';
           }
         }
+
+        elt.src = src;
+        elt.removeAttribute('data-not-lz');
+        elt.setAttribute('data-lzled', true);
       }
     }
     elts[indexOf.call(elts, elt)] = null;
