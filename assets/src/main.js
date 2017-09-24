@@ -45,12 +45,22 @@ var resizeHandle = function (type) {
 	lazy.init();
 }
 
-var checkWebp = function() {
+var checkImgType = function() {
 	try {
+		var $imgWrap = document.getElementsByClassName('js-img-wrap');
+		var u = window.navigator.userAgent;
+		var isMobile = !!u.match(/AppleWebKit.*Mobile.*/);
+		var isIos = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+		var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1;
+		var isWeixin = (u.indexOf('MicroMessenger') === -1);
+
 		if (document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') == 0) {
-			var $imgWrap = document.getElementsByClassName('js-img-wrap');
 			for (var i = 0, len = $imgWrap.length; i < len; i++) {
 				$imgWrap[i].setAttribute('href', $imgWrap[i].getAttribute('href') + '?tn=2');
+			}
+		} else if (isMobile || isIos || isAndroid || isWeixin) {
+			for (var i = 0, len = $imgWrap.length; i < len; i++) {
+				$imgWrap[i].setAttribute('href', $imgWrap[i].getAttribute('href') + '?tn=3');
 			}
 		}
 	} catch (err) {
@@ -59,7 +69,7 @@ var checkWebp = function() {
 window.onload = function() {
 	var curType = window.neworientation.init;
 	resizeHandle(curType);
-	checkWebp();
+	checkImgType();
 	swipe.init();
 
 	window.addEventListener('orientationchange', function () {
