@@ -424,6 +424,7 @@
 				return _listeners[name].push(fn);
 			},
 			_shout = function (name) {
+				if (!_listeners) return;
 				var listeners = _listeners[name];
 
 				if (listeners) {
@@ -1034,10 +1035,17 @@
 			},
 
 			handleEvent: function (e) {
+				var self = this;
 				e = e || window.event;
 				if (_globalEventHandlers[e.type]) {
 					_globalEventHandlers[e.type](e);
 				}
+				var curType = window.neworientation.init;
+				window.addEventListener('orientationchange', function (e) {
+					if (curType !== window.neworientation.current) {
+						self.updateSize(e);
+					}
+				}, false);
 			},
 
 
@@ -1246,11 +1254,9 @@
 							self.setContent(holder, hIndex);
 						}
 						if (item && item.container) {
-							setTimeout(function() {
-								_calculateItemSize(item, _viewportSize);
-								_setImageSize(item);
-								_applyZoomPanToItem(item);
-							}, 200);
+							_calculateItemSize(item, _viewportSize);
+							_setImageSize(item);
+							_applyZoomPanToItem(item);
 						}
 
 					}
