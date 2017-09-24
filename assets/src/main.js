@@ -2,6 +2,7 @@
 require('./theme.css')
 require('./photoSwipe/photoswipe.css')
 require('./photoSwipe/default-skin/default-skin.css')
+require('./orientationchange');
 
 var supportOrientation = (typeof window.orientation === 'number' && typeof window.onorientationchange === 'object');
 
@@ -24,16 +25,16 @@ var lazy = {
 	}
 }
 
-var resizeHandle = function () {
+var resizeHandle = function (type) {
 	var iw = window.innerWidth;
 	var ih = window.innerHeight;
 	if (iw <= 700) {
 		var $thumbs = document.getElementsByClassName('js-photos-thumb');
 		var width;
-		if (iw >= ih) {
+		if (type === 'landscape') {
 			// 横屏
 			width = '25%';
-		} else {
+		} else if (type === 'portrait') {
 			// 竖屏
 			width = '33.333333%';
 		}
@@ -56,12 +57,15 @@ var checkWebp = function() {
 	}
 }
 window.onload = function() {
-	resizeHandle();
+	var curType = window.neworientation.init;
+	resizeHandle(curType);
 	checkWebp();
 	swipe.init();
-	if (supportOrientation) {
-		window.addEventListener('orientationchange', resizeHandle);
-	} else {
-		window.addEventListener('resize', resizeHandle);
-	}
+
+	window.addEventListener('orientationchange', function () {
+		if (curType !== window.neworientation.current) {
+			resizeHandle(window.neworientation.current);
+			curType = window.neworientation.current;
+		}
+	}, false);
 }
