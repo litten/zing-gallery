@@ -11,8 +11,7 @@
 	}
 })(this, function () {
 	'use strict';
-
-	var isOrientation = ('orientation' in window && 'onorientationchange' in window);
+	var _orientationChangeTimeout;
 	var PhotoSwipe = function (template, UiClass, items, options) {
 
 		/*>>framework-bridge*/
@@ -424,7 +423,6 @@
 				return _listeners[name].push(fn);
 			},
 			_shout = function (name) {
-				if (!_listeners) return;
 				var listeners = _listeners[name];
 
 				if (listeners) {
@@ -843,7 +841,14 @@
 
 				// Setup global events
 				_globalEventHandlers = {
-					orientationchange: self.updateSize,
+					orientationchange: function (e) {
+						clearTimeout(_orientationChangeTimeout);
+						_orientationChangeTimeout = setTimeout(function () {
+							if (_viewportSize.x !== self.scrollWrap.clientWidth) {
+								self.updateSize(e);
+							}
+						}, 500);
+					},
 					resize: self.updateSize,
 					scroll: _updatePageScrollOffset,
 					keydown: _onKeyDown,
@@ -1035,17 +1040,10 @@
 			},
 
 			handleEvent: function (e) {
-				var self = this;
 				e = e || window.event;
 				if (_globalEventHandlers[e.type]) {
 					_globalEventHandlers[e.type](e);
 				}
-				var curType = window.neworientation.init;
-				window.addEventListener('orientationchange', function (e) {
-					if (curType !== window.neworientation.current) {
-						self.updateSize(e);
-					}
-				}, false);
 			},
 
 
