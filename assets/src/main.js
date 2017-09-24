@@ -44,8 +44,20 @@ var resizeHandle = function () {
 	lazy.init();
 }
 
+var checkWebp = function() {
+	try {
+		if (document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') == 0) {
+			var $imgWrap = document.getElementsByClassName('js-img-wrap');
+			for (var i = 0, len = $imgWrap.length; i < len; i++) {
+				$imgWrap[i].setAttribute('href', $imgWrap[i].getAttribute('href') + '?tn=2');
+			}
+		}
+	} catch (err) {
+	}
+}
 window.onload = function() {
 	resizeHandle();
+	checkWebp();
 	swipe.init();
 	if (supportOrientation) {
 		window.addEventListener('orientationchange', resizeHandle);
