@@ -33,7 +33,7 @@ var resizeHandle = function (type) {
 		var width;
 		if (type === 'landscape') {
 			// 横屏
-			width = '25%';
+			width = '20%';
 		} else if (type === 'portrait') {
 			// 竖屏
 			width = '33.333333%';
