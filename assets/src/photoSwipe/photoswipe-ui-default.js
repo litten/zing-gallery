@@ -47,7 +47,7 @@ var PhotoSwipeUI_Default =
 
 		_options,
 		_defaultUIOptions = {
-			barsSize: {top:44, bottom:'auto'},
+			barsSize: {top:40, bottom:'auto'},
 			closeElClasses: ['item', 'caption', 'zoom-wrap', 'ui', 'top-bar'], 
 			timeToIdle: 4000, 
 			timeToIdleOutside: 1000,
@@ -70,12 +70,10 @@ var PhotoSwipeUI_Default =
 			counterEl: true,
 			arrowEl: true,
 			preloaderEl: true,
-
 			tapToClose: false,
 			tapToToggleControls: true,
 
 			clickToCloseNonZoomable: true,
-
 			shareButtons: [
 				{id:'facebook', label:'Share on Facebook', url:'https://www.facebook.com/sharer/sharer.php?u={{url}}'},
 				{id:'twitter', label:'Tweet', url:'https://twitter.com/intent/tweet?text={{text}}&url={{url}}'},
@@ -641,7 +639,11 @@ var PhotoSwipeUI_Default =
 		}
 		_listen('initialZoomIn', function() {
 			if(_options.showAnimationDuration) {
-				framework.removeClass( _controls, 'pswp__ui--hidden');
+				if (window.innerWidth > window.innerHeight) {
+					_controlsVisible = false;
+				} else {
+					framework.removeClass(_controls, 'pswp__ui--hidden');
+				}
 			}
 		});
 		_listen('initialZoomOut', function() {

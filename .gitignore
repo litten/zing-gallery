@@ -9,7 +9,7 @@
 /tmp
 /docs
 /docs/*
-/tmp/*
+/tmp*/*
 node_modules
 npm-debug.log
 /resources/

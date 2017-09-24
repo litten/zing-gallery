@@ -18,8 +18,8 @@
  */
 /* <button> css reset */
 .pswp__button {
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   position: relative;
   background: none;
   cursor: pointer;
@@ -53,9 +53,9 @@
 .pswp__button--arrow--left:before,
 .pswp__button--arrow--right:before {
   background: url(default-skin.png) 0 0 no-repeat;
-  background-size: 264px 88px;
-  width: 44px;
-  height: 44px; }
+  background-size: 236px 80px;
+  width: 40px;
+  height: 40px; }
 
 @media (-webkit-min-device-pixel-ratio: 1.1), (-webkit-min-device-pixel-ratio: 1.09375), (min-resolution: 105dpi), (min-resolution: 1.1dppx) {
   /* Serve SVG sprite if browser supports SVG and resolution is more than 105dpi */
@@ -68,10 +68,10 @@
     background: none; } }
 
 .pswp__button--close {
-  background-position: 0 -44px; }
+  background-position: 0 -40px; }
 
 .pswp__button--share {
-  background-position: -44px -44px; }
+  background-position: -40px -40px; }
 
 .pswp__button--fs {
   display: none; }
@@ -80,11 +80,11 @@
   display: block; }
 
 .pswp--fs .pswp__button--fs {
-  background-position: -44px 0; }
+  background-position: -40px 0; }
 
 .pswp__button--zoom {
   display: none;
-  background-position: -88px 0; }
+  background-position: -80px 0; }
 
 .pswp--zoom-allowed .pswp__button--zoom {
   display: block; }
@@ -127,11 +127,11 @@
 
 .pswp__button--arrow--left:before {
   left: 6px;
-  background-position: -138px -44px; }
+  background-position: -138px -40px; }
 
 .pswp__button--arrow--right:before {
   right: 6px;
-  background-position: -94px -44px; }
+  background-position: -94px -40px; }
 
 /*
 
@@ -172,7 +172,7 @@
   border-radius: 2px;
   display: block;
   width: auto;
-  right: 44px;
+  right: 40px;
   -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
           box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
   -webkit-transform: translateY(6px);
@@ -249,9 +249,9 @@ a.pswp__share--download:hover {
   position: absolute;
   left: 0;
   top: 0;
-  height: 44px;
+  height: 40px;
   font-size: 13px;
-  line-height: 44px;
+  line-height: 40px;
   color: #FFF;
   opacity: 0.75;
   padding: 0 10px; }
@@ -266,16 +266,15 @@ a.pswp__share--download:hover {
   left: 0;
   bottom: 0;
   width: 100%;
-  min-height: 44px; }
+  min-height: 40px; }
   .pswp__caption small {
     font-size: 11px;
     color: #BBB; }
 
 .pswp__caption__center {
-  text-align: left;
-  max-width: 420px;
+  text-align: center;
   margin: 0 auto;
-  font-size: 13px;
+  font-size: 12px;
   padding: 10px;
   line-height: 20px;
   word-break: break-all;
@@ -296,8 +295,8 @@ a.pswp__share--download:hover {
 
  */
 .pswp__preloader {
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   position: absolute;
   top: 0;
   left: 50%;
@@ -426,7 +425,7 @@ a.pswp__share--download:hover {
   position: absolute;
   left: 0;
   top: 0;
-  height: 44px;
+  height: 40px;
   width: 100%; }
 
 .pswp__caption,

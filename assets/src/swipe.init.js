@@ -1,4 +1,4 @@
-var PhotoSwipe = require('./photoSwipe/photoswipe.min')
+var PhotoSwipe = require('./photoSwipe/photoswipe')
 var PhotoSwipeUI_Default = require('./photoSwipe/photoswipe-ui-default')
 
 var initPhotoSwipeFromDOM = function(gallerySelector) {
@@ -242,7 +242,6 @@ var initSecretAlbum = function(albumSlt) {
   $btn.addEventListener('click', function(e) {
     $dialog.style.display = 'none';
     $overlay.style.display = 'none';
-    console.log($btn)
     // $btn.submit();
     // window.location.href = (baseUrl + '?password=' + $input.value);
   })

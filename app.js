@@ -1,3 +1,4 @@
+require('events').EventEmitter.prototype._maxListeners = 100;
 var resize = require('./lib/resize'),
 cfg = require('./config'),
 express = require('express'),

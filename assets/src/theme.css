@@ -80,11 +80,12 @@ section.info {
 }
 
 .exif-p {
-  width: 50%;
-  float: left;
+  margin-right: 10px;
+  display: inline;
+  font-size: 12px;
 }
 .exif-p b {
-  margin-right: 10px;
+  margin-right: 3px;
 }
 
 .layout {
