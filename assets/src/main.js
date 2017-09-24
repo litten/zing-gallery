@@ -28,7 +28,7 @@ var lazy = {
 var resizeHandle = function (type) {
 	var iw = window.innerWidth;
 	var ih = window.innerHeight;
-	if (iw <= 700) {
+	if (iw <= 750) {
 		var $thumbs = document.getElementsByClassName('js-photos-thumb');
 		var width;
 		if (type === 'landscape') {
@@ -62,7 +62,7 @@ var checkImgType = function() {
 			for (var i = 0, len = $imgWrap.length; i < len; i++) {
 				$imgWrap[i].setAttribute('href', $imgWrap[i].getAttribute('href') + '?tn=3');
 				var sizeArr = $imgWrap[i].getAttribute('data-size').split('x');
-				$imgWrap[i].setAttribute('data-size', '600x' + sizeArr[1] * 600 / sizeArr[0]);
+				$imgWrap[i].setAttribute('data-size', '621x' + sizeArr[1] * 621 / sizeArr[0]);
 			}
 		}
 	} catch (err) {

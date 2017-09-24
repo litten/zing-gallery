@@ -1174,7 +1174,6 @@
 
 
 			updateSize: function (force) {
-
 				if (!_isFixedPosition && _options.modal) {
 					var windowScrollY = framework.getScrollY();
 					if (_currentWindowScrollY !== windowScrollY) {
@@ -1247,9 +1246,11 @@
 							self.setContent(holder, hIndex);
 						}
 						if (item && item.container) {
-							_calculateItemSize(item, _viewportSize);
-							_setImageSize(item);
-							_applyZoomPanToItem(item);
+							setTimeout(function() {
+								_calculateItemSize(item, _viewportSize);
+								_setImageSize(item);
+								_applyZoomPanToItem(item);
+							}, 200);
 						}
 
 					}
@@ -2730,7 +2731,6 @@
 				bounds.min.y = (realPanElementH > _tempPanAreaSize.y) ? item.vGap.top : bounds.center.y;
 			},
 			_calculateItemSize = function (item, viewportSize, zoomLevel) {
-
 				if (item.src && !item.loadError) {
 					var isInitial = !zoomLevel;
 
@@ -3047,7 +3047,6 @@
 					}
 
 					_checkForError(item);
-
 					_calculateItemSize(item, _viewportSize);
 
 					if (item.src && !item.loadError && !item.loaded) {

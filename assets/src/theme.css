@@ -235,7 +235,7 @@ section.info table td:first-child {
   padding-right: 20px;
 }
 
-@media screen and (max-width:780px) {
+@media screen and (max-width:750px) {
   .layout {
     padding: 20px 0 0 0;
   }
