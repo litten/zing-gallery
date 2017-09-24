@@ -2,6 +2,7 @@
 require('./theme.css')
 require('./photoSwipe/photoswipe.css')
 require('./photoSwipe/default-skin/default-skin.css')
+require('./orientationchange');
 
 var supportOrientation = (typeof window.orientation === 'number' && typeof window.onorientationchange === 'object');
 
@@ -24,16 +25,16 @@ var lazy = {
 	}
 }
 
-var resizeHandle = function () {
+var resizeHandle = function (type) {
 	var iw = window.innerWidth;
 	var ih = window.innerHeight;
 	if (iw <= 700) {
 		var $thumbs = document.getElementsByClassName('js-photos-thumb');
 		var width;
-		if (iw >= ih) {
+		if (type === 'landscape') {
 			// 横屏
 			width = '25%';
-		} else {
+		} else if (type === 'portrait') {
 			// 竖屏
 			width = '33.333333%';
 		}
@@ -44,12 +45,27 @@ var resizeHandle = function () {
 	lazy.init();
 }
 
-window.onload = function() {
-	resizeHandle();
-	swipe.init();
-	if (supportOrientation) {
-		window.addEventListener('orientationchange', resizeHandle);
-	} else {
-		window.addEventListener('resize', resizeHandle);
+var checkWebp = function() {
+	try {
+		if (document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') == 0) {
+			var $imgWrap = document.getElementsByClassName('js-img-wrap');
+			for (var i = 0, len = $imgWrap.length; i < len; i++) {
+				$imgWrap[i].setAttribute('href', $imgWrap[i].getAttribute('href') + '?tn=2');
+			}
+		}
+	} catch (err) {
 	}
+}
+window.onload = function() {
+	var curType = window.neworientation.init;
+	resizeHandle(curType);
+	checkWebp();
+	swipe.init();
+
+	window.addEventListener('orientationchange', function () {
+		if (curType !== window.neworientation.current) {
+			resizeHandle(window.neworientation.current);
+			curType = window.neworientation.current;
+		}
+	}, false);
 }
