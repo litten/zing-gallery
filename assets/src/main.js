@@ -54,13 +54,15 @@ var checkImgType = function() {
 		var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1;
 		var isWeixin = (u.indexOf('MicroMessenger') === -1);
 
-		if (document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') == 0) {
+		if (document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') === 0) {
 			for (var i = 0, len = $imgWrap.length; i < len; i++) {
 				$imgWrap[i].setAttribute('href', $imgWrap[i].getAttribute('href') + '?tn=2');
 			}
 		} else if (isMobile || isIos || isAndroid || isWeixin) {
 			for (var i = 0, len = $imgWrap.length; i < len; i++) {
 				$imgWrap[i].setAttribute('href', $imgWrap[i].getAttribute('href') + '?tn=3');
+				var sizeArr = $imgWrap[i].getAttribute('data-size').split('x');
+				$imgWrap[i].setAttribute('data-size', '600x' + sizeArr[1] * 600 / sizeArr[0]);
 			}
 		}
 	} catch (err) {
