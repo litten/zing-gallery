@@ -639,7 +639,7 @@ var PhotoSwipeUI_Default =
 		}
 		_listen('initialZoomIn', function() {
 			if(_options.showAnimationDuration) {
-				if (window.innerWidth > window.innerHeight) {
+				if (window.innerWidth < 750 && window.innerWidth > window.innerHeight) {
 					_controlsVisible = false;
 				} else {
 					framework.removeClass(_controls, 'pswp__ui--hidden');
