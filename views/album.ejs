@@ -56,7 +56,9 @@
           <figcaption itemprop="caption description"><%= photo.name %></figcaption>
           <div style="display:none">
             <% if (photo.exif) {%>
-              <div class="pswp__download_original js-download">查看原图 (<%= parseInt((photo.exif.size || 0) / 1024) %>K)</div>
+              <div class="pswp__download_original js-download">
+                <div class="pswp__download_btn js-download-btn">查看原图 (<%= parseInt((photo.exif.size || 0) / 1024) %>K)</div>
+              </div>
               <% if (photo.exif.Model) {%>
                 <p class="exif-p"><b><i class="icon-camera"></i></b><span><%= photo.exif.Model %></span></p>
               <% } %>

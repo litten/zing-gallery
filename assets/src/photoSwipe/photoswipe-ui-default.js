@@ -101,6 +101,8 @@
 				_blockControlsTapTimeout;
 			
 			function createXHR(url, $download, target) {
+				var $downloadBtn = $download.getElementsByClassName('js-download-btn')[0];
+				var total = parseInt(($downloadBtn.innerHTML.match(/\(([^)]*)\)/))[1]);
 				var xhr;
 				try {
 					// Firefox, Opera 8.0+, Safari，IE7+  
@@ -118,19 +120,18 @@
 					}
 				}
 				xhr.onprogress = function (event) {
-					var progress = '';
-					if (event.lengthComputable) {
-						progress = '' + Math.round(100 * event.loaded / event.total) + '%';
-						$download.innerHTML = ('下载中 (' + progress + ')');
+					if (total === 0) {
+						return;
 					}
+					var progress = '';
+					progress = '' + Math.round(100 * event.loaded / total / 1024) + '%';
+					$downloadBtn.innerHTML = ('下载中 (' + progress + ')');
 				}
 				xhr.onload = function () {
 					if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
 						$download.style.display = 'none';
 						target.src = url;
 						target.onload = function () {
-							console.log(pswp.currItem);
-							// initialZoomLevel
 							pswp.currItem.src = url;
 							pswp.currItem.currLoaded = true;
 							var $imgWrap = document.getElementsByClassName('js-img-wrap');
@@ -184,7 +185,6 @@
 							if (zoomArr[i].getAttribute('data-curr')) {
 								var target = zoomArr[i].getElementsByClassName('js-pswp__img')[0];
 								var newSrc = target.src.replace(/\?tn=\w/g, '');
-								$download[0].innerHTML = '下载中(0%)';
 								createXHR(newSrc, $download[0], target);
 							}
 						}

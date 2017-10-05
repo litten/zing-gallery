@@ -483,12 +483,14 @@ a.pswp__share--download:hover {
   background: none; }
 
 .pswp__download_original {
+  display: block;
+  cursor: pointer;
+}
+.pswp__download_btn {
   border: 1px solid #808080;
   border-radius: 3px;
   padding: 2px 4px;
   margin: 0 auto 5px;
   line-height: 18px;
-  display: block;
-  cursor: pointer;
-  width: fit-content;
+  display: inline-block;
 }
