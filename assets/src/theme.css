@@ -450,3 +450,7 @@ header {
 .m-nav .sep {
   padding: 0 8px;
 }
+
+body.webp .pswp__download_original {
+  display: none;
+}

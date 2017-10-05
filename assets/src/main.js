@@ -58,6 +58,7 @@ var checkImgType = function() {
 			for (var i = 0, len = $imgWrap.length; i < len; i++) {
 				$imgWrap[i].setAttribute('href', $imgWrap[i].getAttribute('href') + '?tn=2');
 			}
+			document.getElementsByTagName('body')[0].className = 'webp';
 		} else if (isMobile || isIos || isAndroid || isWeixin) {
 			for (var i = 0, len = $imgWrap.length; i < len; i++) {
 				$imgWrap[i].setAttribute('href', $imgWrap[i].getAttribute('href') + '?tn=3');

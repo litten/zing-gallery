@@ -25,6 +25,9 @@
 		var framework = {
 			features: null,
 			bind: function (target, type, listener, unbind) {
+				if (!target) {
+					return;
+				}
 				var methodName = (unbind ? 'remove' : 'add') + 'EventListener';
 				type = type.split(' ');
 				for (var i = 0; i < type.length; i++) {
@@ -473,7 +476,6 @@
 			},
 			_applyZoomPanToItem = function (item) {
 				if (item.container) {
-
 					_applyZoomTransform(item.container.style,
 						item.initialPosition.x,
 						item.initialPosition.y,
@@ -1175,6 +1177,12 @@
 
 				_shout('afterChange');
 
+				// 设置一个标志
+				var $item = document.getElementsByClassName('pswp__zoom-wrap');
+				for (var i = 0, len = $item.length; i < len; i++) {
+					$item[i].removeAttribute('data-curr');
+				}
+				self.currItem.container.setAttribute('data-curr', 'true');
 			},
 
 
@@ -1230,7 +1238,6 @@
 
 						// update zoom level on items and refresh source (if needsUpdate)
 						item = _getItemAt(hIndex);
-
 						// re-render gallery item if `needsUpdate`,
 						// or doesn't have `bounds` (entirely new slide object)
 						if (item && (_itemsNeedUpdate || item.needsUpdate || !item.bounds)) {
@@ -2287,6 +2294,7 @@
 
 
 			_finishSwipeMainScrollGesture = function (gestureType, _releaseAnimData) {
+
 				var itemChanged;
 				if (!_mainScrollAnimating) {
 					_currZoomedItemIndex = _currentItemIndex;
@@ -2833,7 +2841,7 @@
 			_preloadImage = function (item) {
 				item.loading = true;
 				item.loaded = false;
-				var img = item.img = framework.createEl('pswp__img', 'img');
+				var img = item.img = framework.createEl('pswp__img js-pswp__img', 'img');
 				var onComplete = function () {
 					item.loading = false;
 					item.loaded = true;
@@ -3145,7 +3153,7 @@
 
 					} else if (item.src && !item.loadError) {
 						// image object is created every time, due to bugs of image loading & delay when switching images
-						img = framework.createEl('pswp__img', 'img');
+						img = framework.createEl('pswp__img js-pswp__img', 'img');
 						img.style.opacity = 1;
 						img.src = item.src;
 						_setImageSize(item, img);

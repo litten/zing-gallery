@@ -50,12 +50,13 @@
 <div class="photos" itemscope itemtype="http://schema.org/ImageGallery">
   <% photos.forEach(function(photo){ %>
       <figure class="thumb js-thumb js-photos-thumb" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-          <a class="img-wrap js-img-wrap" href="./<%= photo.src %>" itemprop="contentUrl" data-size="<%= photo.size %>">
+          <a class="img-wrap js-img-wrap" href="./<%= photo.src %>" itemprop="contentUrl" data-size="<%= photo.size %>" data-curr-size="<%= photo.size %>">
             <img class="js-image" data-not-lz="true" alt="<%= photo.name %>" data-src="<%= config.cdnDomain %><%= photo.src %>?tn=1" src="./img/preloader.gif" itemprop="thumbnail"/>
           </a>
           <figcaption itemprop="caption description"><%= photo.name %></figcaption>
           <div style="display:none">
             <% if (photo.exif) {%>
+              <div class="pswp__download_original js-download">查看原图 (<%= parseInt((photo.exif.size || 0) / 1024) %>K)</div>
               <% if (photo.exif.Model) {%>
                 <p class="exif-p"><b><i class="icon-camera"></i></b><span><%= photo.exif.Model %></span></p>
               <% } %>
@@ -114,6 +115,7 @@
 
                 <!--<button class="pswp__button pswp__button--share" title="Share"></button>-->
 
+
                 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 
                 <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
@@ -138,7 +140,6 @@
 
             <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
             </button>
-
             <div class="pswp__caption">
                 <div class="pswp__caption__center"></div>
             </div>
