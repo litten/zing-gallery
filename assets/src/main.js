@@ -54,7 +54,7 @@ var checkImgType = function() {
 		var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1;
 		var isWeixin = (u.indexOf('MicroMessenger') === -1);
 
-		if (document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') === 0) {
+		if (document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') === 10) {
 			for (var i = 0, len = $imgWrap.length; i < len; i++) {
 				$imgWrap[i].setAttribute('href', $imgWrap[i].getAttribute('href') + '?tn=2');
 			}

@@ -1280,7 +1280,9 @@
 				_shout('resize');
 				_shout('orientationchange');
 			},
-
+			setZoom: function (currZoomLevel) {
+				_currZoomLevel = currZoomLevel;
+			},
 			// Zoom current item to
 			zoomTo: function (destZoomLevel, centerPoint, speed, easingFn, updateFn) {
 				/*
@@ -1290,7 +1292,10 @@
 						destZoomLevel = self.currItem.fillRatio;
 					}
 				*/
-
+				//_currZoomLevel = 0.29296875;
+				// _panOffset.x = _calculatePanOffset('x', _currZoomLevel);
+				// _panOffset.y = _calculatePanOffset('y', _currZoomLevel);
+				// console.log(_currZoomLevel, _panOffset);
 				if (centerPoint) {
 					_startZoomLevel = _currZoomLevel;
 					_midZoomPoint.x = Math.abs(centerPoint.x) - _panOffset.x;
@@ -1314,6 +1319,7 @@
 
 				var onUpdate = function (now) {
 					if (now === 1) {
+						// console.log('from', destZoomLevel, initialZoomLevel)
 						_currZoomLevel = destZoomLevel;
 						_panOffset.x = destPanOffset.x;
 						_panOffset.y = destPanOffset.y;

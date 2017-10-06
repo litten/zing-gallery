@@ -661,13 +661,21 @@
 					var currZoomLevel = pswp.currItem.currZoomLevel;
 					if (pswp.getZoomLevel() !== initialZoomLevel) {
 						if (currZoomLevel) {
-							pswp.zoomTo(currZoomLevel, point, 333);
+							pswp.setZoom(currZoomLevel);
 							pswp.currItem.initialZoomLevel = currZoomLevel;
-						} else {
-							pswp.zoomTo(initialZoomLevel, point, 333);
+							pswp.currItem.currZoomLevel = null;
 						}
+						pswp.zoomTo(initialZoomLevel, point, 333);
 					} else {
-						// pswp.currItem.initialZoomLevel = currZoomLevel;
+						if (currZoomLevel) {
+							pswp.setZoom(currZoomLevel);
+							pswp.currItem.initialPosition.x = pswp.currItem.initialPosition.x * pswp.currItem.initialZoomLevel / currZoomLevel;
+							pswp.currItem.initialPosition.y = pswp.currItem.initialPosition.y * pswp.currItem.initialZoomLevel / currZoomLevel;
+							pswp.currItem.fitRatio = currZoomLevel;
+							pswp.currItem.initialZoomLevel = currZoomLevel;
+							pswp.currItem.currZoomLevel = null;
+						}
+						
 						pswp.zoomTo(_options.getDoubleTapZoom(false, pswp.currItem), point, 333);
 					}
 				});
