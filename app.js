@@ -27,3 +27,4 @@ app.use('/', require('./lib/gallery.js')(Object.assign({
 app.listen(port, host);
 host = host || 'localhost';
 console.log('zing-gallery listening on ' + host  + ':' + port);
+//expect
